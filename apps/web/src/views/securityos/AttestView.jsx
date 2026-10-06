@@ -477,7 +477,8 @@ function StepSuccess({ provider, controlIds, validity, attestedAt, onDone }) {
 
 // ── Main AttestView ───────────────────────────────────────────────────────────
 export default function AttestView({ preSelectedControlIds, onBack }) {
-  const { profile, updateStatus, catalog, statuses, addAttestation } = useApp();
+  const { profile, updateStatus, catalog, statuses, addAttestation, mode, me, workflow } = useApp();
+  const [submitting, setSubmitting] = useState(false);
   const [step, setStep] = useState(1);
   const [provider, setProvider] = useState(null);
   const [coverage, setCoverage] = useState(null);  // { controlIds, description, validity }
@@ -496,7 +497,28 @@ export default function AttestView({ preSelectedControlIds, onBack }) {
     setStep(3);
   }
 
-  function handleConfirm({ attesterName, attesterEmail }) {
+  async function handleConfirm({ attesterName, attesterEmail }) {
+    if (mode === 'api') {
+      // Server records who attested (from the sign-in token) and when.
+      setSubmitting(true);
+      try {
+        const r = await workflow.createAttestation({
+          source_name: [provider.name, provider.product].filter(Boolean).join(' '),
+          source_description: coverage.description || provider.description || `${provider.name} coverage`,
+          control_ids: coverage.controlIds,
+          confirmation_phrase: 'ATTEST',
+          validity_days: coverage.validity,
+        });
+        setAttestedAt(r?.attestation?.created_at ?? new Date().toISOString());
+        setStep(4);
+      } catch {
+        /* error toast already shown */
+      } finally {
+        setSubmitting(false);
+      }
+      return;
+    }
+
     const now = new Date().toISOString();
     setAttestedAt(now);
 
@@ -571,8 +593,8 @@ export default function AttestView({ preSelectedControlIds, onBack }) {
             controlIds={coverage.controlIds}
             description={coverage.description}
             validity={coverage.validity}
-            profile={profile}
-            onConfirm={handleConfirm}
+            profile={mode === 'api' ? { ownerName: me?.display_name, ownerEmail: me?.email } : profile}
+            onConfirm={submitting ? () => {} : handleConfirm}
             onBack={() => setStep(2)}
           />
         )}

@@ -9,6 +9,7 @@
  */
 import { useState, useMemo, useCallback } from 'react';
 import { useApp } from '../../SecurityOSApp';
+import AwaitingYou from '../../api/AwaitingYou';
 import { CATEGORY_LABEL } from '../../data/controls';
 import { calculateImpact, toGrade } from '../../data/scoring';
 import {
@@ -54,8 +55,58 @@ function fwTags(control) {
     .slice(0, 3);
 }
 
-// ── Assignment Panel ──────────────────────────────────────────────────────────
-function AssignPanel({ controlId, assignment, onSave, onClose }) {
+// ── Assignment Panel (connected mode: pick a teammate who can remediate) ───────
+function ApiAssignPanel({ assignment, onSave, onClose }) {
+  const { workflow, can } = useApp();
+  const [userId, setUserId] = useState(assignment?.userId ?? '');
+  const [busy, setBusy] = useState(false);
+  const people = workflow.assignees;
+
+  if (!can('finding.assign')) {
+    return (
+      <div className="mx-4 mb-2 rounded-2xl bg-slate-800 border border-slate-700 p-4 text-xs text-slate-400 flex justify-between gap-3">
+        <span>Only admins, executives, and MSP technicians can assign fixes.</span>
+        <button onClick={onClose} className="text-slate-500 hover:text-slate-300"><X size={14} /></button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mx-4 mb-2 rounded-2xl bg-slate-800 border border-slate-700 p-4 space-y-3">
+      <div className="flex items-center justify-between">
+        <p className="text-xs font-semibold text-white flex items-center gap-1.5">
+          <UserPlus size={13} className="text-indigo-400" /> Assign Fix
+        </p>
+        <button onClick={onClose} className="text-slate-500 hover:text-slate-300"><X size={14} /></button>
+      </div>
+      {people.length === 0 ? (
+        <p className="text-xs text-slate-400">No one can be assigned yet. Invite an engineer from Settings → Team.</p>
+      ) : (
+        <select value={userId} onChange={e => setUserId(e.target.value)}
+                className="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+          <option value="">Choose a teammate…</option>
+          {people.map(p => (
+            <option key={p.user_id} value={p.user_id}>{p.display_name}{p.email ? ` (${p.email})` : ''}</option>
+          ))}
+        </select>
+      )}
+      <button
+        disabled={!userId || busy}
+        onClick={async () => { setBusy(true); try { await onSave({ userId }); onClose(); } catch { /* toast shown */ } finally { setBusy(false); } }}
+        className="w-full py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white text-xs font-semibold"
+      >
+        {busy ? 'Assigning…' : 'Assign'}
+      </button>
+    </div>
+  );
+}
+
+function AssignPanel(props) {
+  const { mode } = useApp();
+  return mode === 'api' ? <ApiAssignPanel {...props} /> : <LocalAssignPanel {...props} />;
+}
+
+function LocalAssignPanel({ controlId, assignment, onSave, onClose }) {
   const [owner,   setOwner]   = useState(assignment?.owner   ?? '');
   const [dueDate, setDueDate] = useState(assignment?.dueDate ?? '');
   const [status,  setStatus]  = useState(assignment?.status  ?? 'ASSIGNED');
@@ -518,6 +569,9 @@ export default function FixRoadmapView() {
             </span>
           </div>
         )}
+
+        {/* Work waiting on this person (connected mode) */}
+        <AwaitingYou />
 
         {/* Fix sessions */}
         {sessions.length > 0 && (

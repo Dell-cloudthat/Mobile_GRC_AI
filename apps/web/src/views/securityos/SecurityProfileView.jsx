@@ -6,6 +6,7 @@
  * Links directly to FixRoadmapView (operational) and ReportView (technical).
  */
 import { useApp, ScoreRing } from '../../SecurityOSApp';
+import AwaitingYou from '../../api/AwaitingYou';
 import { calculateFrameworkReadiness, toGrade } from '../../data/scoring';
 import { calculateTCO, riskLevel, fmtUSD } from '../../data/risk';
 import {
@@ -150,6 +151,9 @@ export default function SecurityProfileView() {
           <MetricCard label="Verified" value={`${verifiedPct}%`} color="text-indigo-400" />
           <MetricCard label="High Risk" value={highFail} color={highFail > 0 ? 'text-orange-400' : 'text-green-400'} />
         </div>
+
+        {/* Work waiting on this person (connected mode) */}
+        <AwaitingYou />
 
         {/* Alerts */}
         {expiringCount > 0 && (

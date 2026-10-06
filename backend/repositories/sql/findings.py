@@ -107,6 +107,8 @@ class SqlFindingRepository:
             values = {"state": to_state, "updated_at": now}
             if assigned_to_user_id is not None:
                 values["assigned_to_user_id"] = assigned_to_user_id
+            elif action == "start" and not row.assigned_to_user_id:
+                values["assigned_to_user_id"] = actor_user_id
             if action == "risk_accept":
                 values.update(risk_accepted_until=to_dt(risk_accepted_until),
                               risk_justification=risk_justification, risk_accepted_by=actor_user_id)

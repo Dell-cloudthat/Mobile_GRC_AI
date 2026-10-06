@@ -85,7 +85,7 @@ function MultiSelect({ options, selected, onChange, getLabel, getKey }) {
   );
 }
 
-export default function OnboardingView({ profile, setProfile, onComplete }) {
+export default function OnboardingView({ profile, setProfile, onComplete, skipLabel = 'Skip setup (use demo data)' }) {
   const [step, setStep] = useState(0);
 
   function update(key, value) {
@@ -380,7 +380,7 @@ export default function OnboardingView({ profile, setProfile, onComplete }) {
             onClick={() => { setProfile((p) => ({ ...p, businessName: 'My Business', industry: 'Consulting', employeeCount: '2–5', emailProvider: 'Microsoft 365 (Outlook)', cloudProviders: ['Microsoft 365 / Azure'], sensitiveData: [] })); onComplete(); }}
             className="mt-4 w-full text-center text-slate-500 text-sm hover:text-slate-400"
           >
-            Skip setup (use demo data)
+            {skipLabel}
           </button>
         )}
       </div>

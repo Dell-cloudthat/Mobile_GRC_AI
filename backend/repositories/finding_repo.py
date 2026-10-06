@@ -40,13 +40,14 @@ FINDING_STATES = frozenset(
 
 # {from_state: {action: to_state}}
 TRANSITIONS: Dict[str, Dict[str, str]] = {
-    "open":                   {"assign": "assigned",       "risk_accept": "risk_accepted"},
+    # "start" from open/reopened = "I'll take it": self-assigns (see transition()).
+    "open":                   {"assign": "assigned", "start": "in_progress", "risk_accept": "risk_accepted"},
     "assigned":               {"start":  "in_progress",   "risk_accept": "risk_accepted"},
     "in_progress":            {"submit": "submitted_for_review", "risk_accept": "risk_accepted"},
     "submitted_for_review":   {"approve": "closed",        "reject": "in_progress"},
     "closed":                 {"reopen": "reopened"},
     "risk_accepted":          {"reopen": "open"},
-    "reopened":               {"assign": "assigned",       "risk_accept": "risk_accepted"},
+    "reopened":               {"assign": "assigned", "start": "in_progress", "risk_accept": "risk_accepted"},
 }
 
 
@@ -200,6 +201,8 @@ class InMemoryFindingRepository:
             finding.updated_at = now
             if assigned_to_user_id is not None:
                 finding.assigned_to_user_id = assigned_to_user_id
+            elif action == "start" and not finding.assigned_to_user_id:
+                finding.assigned_to_user_id = actor_user_id
             if action == "risk_accept":
                 finding.risk_accepted_until = risk_accepted_until
                 finding.risk_justification = risk_justification

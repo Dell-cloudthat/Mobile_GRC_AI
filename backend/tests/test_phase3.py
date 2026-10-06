@@ -202,3 +202,16 @@ def test_findings_filter_by_control(client, org3):
     assert r.status_code == 200
     assert r.json()["total"] >= 1
     assert all("CTRL-DATA-003" in f["control_ids"] for f in r.json()["findings"])
+
+
+def test_engineer_can_self_start_open_finding(client, org3):
+    """A solo engineer can pick up an unassigned finding ("I'll take it") — it self-assigns."""
+    r = client.post(f"{API}/organizations/{org3['org']}/findings",
+                    json={"title": "Self start", "description": "d", "severity": "medium",
+                          "control_ids": ["CTRL-ORG-001"]}, headers=auth(org3["eng"]))
+    fid = r.json()["finding"]["finding_id"]
+    r = client.post(f"{API}/organizations/{org3['org']}/findings/{fid}/transition",
+                    json={"action": "start"}, headers=auth(org3["eng"]))
+    assert r.status_code == 200, r.text
+    assert r.json()["finding"]["state"] == "in_progress"
+    assert r.json()["finding"]["assigned_to_user_id"] == "p3-eng"

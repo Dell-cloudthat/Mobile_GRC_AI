@@ -3,6 +3,7 @@ import { useApp } from '../../SecurityOSApp';
 import { STATUS, CONTROLS_CATALOG } from '../../data/controls';
 import { buildDemoStatuses } from '../../data/scoring';
 import { ShieldCheck, RefreshCw, Trash2, ChevronRight } from 'lucide-react';
+import { AccountSection, TeamSection, AuditSection } from '../../api/TeamPanel';
 
 const INDUSTRIES = [
   'Medical / Dental Practice', 'Mental Health / Therapy', 'Legal Services',
@@ -32,7 +33,9 @@ function Row({ label, children }) {
 }
 
 export default function SettingsView() {
-  const { profile, setProfile, statuses, updateStatus, scoring } = useApp();
+  const { profile, setProfile, statuses, updateStatus, scoring, mode, can } = useApp();
+  const isApi = mode === 'api';
+  const readOnlyProfile = isApi && !can('org.manage');
   const [saved, setSaved] = useState(false);
 
   function upd(key, val) { setProfile(p => ({ ...p, [key]: val })); }
@@ -85,7 +88,8 @@ export default function SettingsView() {
         {/* Business profile */}
         <div className="mt-4">
           <p className="px-5 text-xs text-slate-500 uppercase tracking-wider mb-2">Business Profile</p>
-          <div className="bg-slate-900 border-y border-slate-800">
+          {readOnlyProfile && <p className="px-5 text-[11px] text-slate-500 mb-2">Only an admin can edit the profile.</p>}
+          <fieldset disabled={readOnlyProfile} className={`bg-slate-900 border-y border-slate-800 ${readOnlyProfile ? 'opacity-70' : ''}`}>
             <Row label="Business Name">
               <input
                 value={profile.businessName}
@@ -94,6 +98,7 @@ export default function SettingsView() {
               />
             </Row>
 
+            {!isApi && (<>
             <Row label="Owner / Attester Name">
               <input
                 value={profile.ownerName ?? ''}
@@ -113,6 +118,7 @@ export default function SettingsView() {
               />
               <p className="text-[10px] text-slate-600 mt-1">Used to identify you on attestations you create.</p>
             </Row>
+            </>)}
 
             <Row label="Industry">
               <select
@@ -165,11 +171,15 @@ export default function SettingsView() {
                 className={`w-full py-3 rounded-xl text-sm font-semibold transition-colors ${
                   saved ? 'bg-green-600 text-white' : 'bg-indigo-600 hover:bg-indigo-500 text-white'
                 }`}>
-                {saved ? '✓ Saved' : 'Save Profile'}
+                {saved ? '✓ Saved' : isApi ? 'Saved automatically' : 'Save Profile'}
               </button>
             </div>
-          </div>
+          </fieldset>
         </div>
+
+        {isApi && <TeamSection />}
+        {isApi && <AuditSection />}
+        {isApi && <AccountSection />}
 
         {/* Integrations */}
         <div className="mt-6">
@@ -196,8 +206,8 @@ export default function SettingsView() {
           </div>
         </div>
 
-        {/* Data management */}
-        <div className="mt-6">
+        {/* Data management (demo mode only) */}
+        {!isApi && <div className="mt-6">
           <p className="px-5 text-xs text-slate-500 uppercase tracking-wider mb-2">Data</p>
           <div className="bg-slate-900 border-y border-slate-800">
             {[
@@ -216,7 +226,7 @@ export default function SettingsView() {
               </button>
             ))}
           </div>
-        </div>
+        </div>}
 
         {/* About */}
         <div className="px-5 py-6">

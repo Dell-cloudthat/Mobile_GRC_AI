@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext, useContext, useCallback, useMemo } from 'react';
+import { useState, useEffect, createContext, useContext, useCallback, useMemo, lazy, Suspense } from 'react';
 import OnboardingView from './views/securityos/OnboardingView';
 import AnalysisView from './views/securityos/AnalysisView';
 import SecurityProfileView from './views/securityos/SecurityProfileView';
@@ -13,6 +13,9 @@ import SettingsView from './views/securityos/SettingsView';
 import { calculateScore, buildDemoStatuses } from './data/scoring';
 import { loadCatalog } from './data/controls';
 import { Shield, Map, Bot, Globe, Settings } from 'lucide-react';
+import { IS_API_MODE } from './lib/config';
+// Connected mode (sign-in, API) loads on demand so demo mode stays small.
+const ApiSecurityOSApp = lazy(() => import('./api/ApiSecurityOSApp'));
 
 // ── App Context ───────────────────────────────────────────────────────────────
 export const AppContext = createContext(null);
@@ -83,6 +86,16 @@ const NAV = [
 ];
 
 export default function SecurityOSApp() {
+  if (!IS_API_MODE) return <LocalSecurityOSApp />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
+      <ApiSecurityOSApp />
+    </Suspense>
+  );
+}
+
+// ── Demo mode: data stays in this browser ────────────────────────────────────
+function LocalSecurityOSApp() {
   const saved = loadState();
   const catalog = loadCatalog();
 
@@ -97,14 +110,7 @@ export default function SecurityOSApp() {
     }];
   });
   const [activeTenantId, setActiveTenantId] = useState(() => saved?.activeTenantId ?? tenants?.[0]?.id ?? 'tenant-1');
-  const [view, setView] = useState('profile');
-  const [fixControlId, setFixControlId] = useState(null);
-  const [attestControlId, setAttestControlId] = useState(null);
   const [phase, setPhase] = useState(saved ? 'app' : 'onboarding');
-  const [riskOpen, setRiskOpen] = useState(false);
-  const [reportOpen, setReportOpen] = useState(false);
-  const [activeFramework, setActiveFramework] = useState('all');
-  const [copilotInitialPrompt, setCopilotInitialPrompt] = useState(null);
 
   // Ensure active tenant id always points to an existing tenant.
   useEffect(() => {
@@ -148,46 +154,6 @@ export default function SecurityOSApp() {
     }));
   }, [activeTenantId]);
 
-  function completeOnboarding() {
-    setPhase('analysis');
-  }
-
-  function completeAnalysis() {
-    setPhase('app');
-  }
-
-  function openFix(controlId) {
-    setFixControlId(controlId);
-  }
-
-  function openCopilotWithPrompt(prompt) {
-    setCopilotInitialPrompt(prompt);
-    setView('copilot');
-    setFixControlId(null);
-  }
-
-  function clearCopilotPrompt() {
-    setCopilotInitialPrompt(null);
-  }
-
-  function openFixForTenant(tenantId, controlId) {
-    setActiveTenantId(tenantId);
-    setFixControlId(controlId);
-  }
-
-  function closeFix() {
-    setFixControlId(null);
-  }
-
-  function openAttest(controlId = null) {
-    setAttestControlId(controlId || '__any__');
-    setFixControlId(null);
-  }
-
-  function closeAttest() {
-    setAttestControlId(null);
-  }
-
   const addAttestation = useCallback((attestation) => {
     setTenants(prev => prev.map(t => {
       if (t.id !== activeTenantId) return t;
@@ -205,29 +171,12 @@ export default function SecurityOSApp() {
     }));
   }, [activeTenantId]);
 
-  function openRisk() {
-    setRiskOpen(true);
-  }
-
-  function closeRisk() {
-    setRiskOpen(false);
-  }
-
-  function openReport() {
-    setReportOpen(true);
-  }
-
-  function closeReport() {
-    setReportOpen(false);
-  }
-
   const addTenant = useCallback((name = 'New Tenant', seed = 'demo') => {
     const id = makeId('tenant');
     const profile = { ...DEFAULT_PROFILE, businessName: name };
     const statuses = seed === 'empty' ? {} : buildDemoStatuses();
     setTenants(prev => [...prev, { id, name, profile, statuses }]);
     setActiveTenantId(id);
-    setView('global');
   }, []);
 
   const removeTenant = useCallback((tenantId) => {
@@ -247,75 +196,68 @@ export default function SecurityOSApp() {
     setActiveTenantId(tenantId);
   }, []);
 
+  if (phase === 'onboarding') {
+    return <OnboardingView profile={profile} setProfile={setProfile} onComplete={() => setPhase('analysis')} />;
+  }
+  if (phase === 'analysis') {
+    return <AnalysisView profile={profile} onComplete={() => setPhase('app')} />;
+  }
+
+  const data = {
+    mode: 'demo',
+    profile, setProfile, statuses, updateStatus, scoring, catalog,
+    attestations, addAttestation,
+    assignments, setAssignment,
+    tenants, activeTenantId, switchTenant, addTenant, removeTenant, renameTenant,
+  };
+  return <AppShell data={data} />;
+}
+
+// ── Shared shell: navigation + screens. Data comes from demo or API mode. ─────
+export function AppShell({ data, banner = null }) {
+  const [view, setView] = useState('profile');
+  const [fixControlId, setFixControlId] = useState(null);
+  const [attestControlId, setAttestControlId] = useState(null);
+  const [riskOpen, setRiskOpen] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
+  const [activeFramework, setActiveFramework] = useState('all');
+  const [copilotInitialPrompt, setCopilotInitialPrompt] = useState(null);
+
   const ctx = {
-    // Active tenant data (backwards-compatible with existing views)
-    profile,
-    setProfile,
-    statuses,
-    updateStatus,
-    scoring,
-    catalog,
-    openFix,
-    openFixForTenant,
-    openRisk,
-    openCopilotWithPrompt,
-    clearCopilotPrompt,
+    ...data,
 
-    // Attestation APIs
-    attestations,
-    openAttest,
-    closeAttest,
-    addAttestation,
+    openFix: (controlId) => setFixControlId(controlId),
+    openFixForTenant: (tenantId, controlId) => { data.switchTenant(tenantId); setFixControlId(controlId); },
+    openRisk: () => setRiskOpen(true),
+    openCopilotWithPrompt: (prompt) => { setCopilotInitialPrompt(prompt); setView('copilot'); setFixControlId(null); },
+    clearCopilotPrompt: () => setCopilotInitialPrompt(null),
 
-    // Assignment APIs
-    assignments,
-    setAssignment,
+    openAttest: (controlId = null) => { setAttestControlId(controlId || '__any__'); setFixControlId(null); },
+    closeAttest: () => setAttestControlId(null),
 
-    // Report
-    openReport,
-    closeReport,
+    openReport: () => setReportOpen(true),
+    closeReport: () => setReportOpen(false),
 
-    // Framework filtering
     activeFramework,
     setFramework: setActiveFramework,
-
-    // Copilot deep-link
     copilotInitialPrompt,
 
-    // Multi-tenant APIs
-    tenants,
-    activeTenantId,
-    switchTenant,
-    addTenant,
-    removeTenant,
-    renameTenant,
+    addTenant: async (...args) => { await data.addTenant(...args); setView('global'); },
     setView,
     view,
   };
 
-  // ── Render phases ──────────────────────────────────────────────────────────
-  if (phase === 'onboarding') {
-    return (
-      <OnboardingView
-        profile={profile}
-        setProfile={setProfile}
-        onComplete={completeOnboarding}
-      />
-    );
-  }
+  const closeFix = () => setFixControlId(null);
+  const closeAttest = () => setAttestControlId(null);
 
-  if (phase === 'analysis') {
-    return <AnalysisView profile={profile} onComplete={completeAnalysis} />;
-  }
-
-  // ── Main App ───────────────────────────────────────────────────────────────
   return (
     <AppContext.Provider value={ctx}>
       <div className="flex flex-col h-screen bg-slate-950 text-white overflow-hidden max-w-lg mx-auto">
+        {banner}
         {/* Main content */}
         <main className="flex-1 overflow-y-auto">
           {reportOpen ? (
-            <ReportView onBack={closeReport} />
+            <ReportView onBack={() => setReportOpen(false)} />
           ) : attestControlId ? (
             <AttestView
               preSelectedControlIds={attestControlId !== '__any__' ? [attestControlId] : []}
@@ -324,7 +266,7 @@ export default function SecurityOSApp() {
           ) : fixControlId ? (
             <FixView controlId={fixControlId} onBack={closeFix} />
           ) : riskOpen ? (
-            <RiskView onBack={closeRisk} />
+            <RiskView onBack={() => setRiskOpen(false)} />
           ) : (
             <>
               {view === 'profile'  && <SecurityProfileView />}

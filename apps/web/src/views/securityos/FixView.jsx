@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import RemediationActions from '../../api/RemediationActions';
 import { useApp } from '../../SecurityOSApp';
 import { getControlById, STATUS, SEVERITY_COLOR, CATEGORY_LABEL } from '../../data/controls';
 import { respondForControl, SUGGESTED_BY_CATEGORY } from '../../data/copilot';
@@ -237,7 +238,7 @@ function InlineCopilot({ control, profile, scoring, onOpenFullCopilot }) {
 
 // ── Main FixView ──────────────────────────────────────────────────────────
 export default function FixView({ controlId, onBack }) {
-  const { statuses, updateStatus, profile, scoring, openCopilotWithPrompt, openAttest } = useApp();
+  const { statuses, updateStatus, profile, scoring, openCopilotWithPrompt, openAttest, mode } = useApp();
   const control = getControlById(controlId);
 
   if (!control) {
@@ -372,6 +373,11 @@ export default function FixView({ controlId, onBack }) {
       </div>
 
       {/* Action buttons */}
+      {mode === 'api' ? (
+        <div className="sticky bottom-0 z-10 px-5 pb-6 pt-3 border-t border-slate-800 bg-slate-950/95 backdrop-blur">
+          <RemediationActions control={control} onBack={onBack} />
+        </div>
+      ) : (
       <div className="px-5 pb-6 pt-3 border-t border-slate-800 space-y-2">
         {!isPassing && (
           <>
@@ -415,6 +421,7 @@ export default function FixView({ controlId, onBack }) {
           Back to dashboard
         </button>
       </div>
+      )}
     </div>
   );
 }
