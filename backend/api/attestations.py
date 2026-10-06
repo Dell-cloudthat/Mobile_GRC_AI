@@ -20,7 +20,7 @@ never from the request body.
 """
 
 from datetime import datetime, timezone
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, ConfigDict, Field
@@ -32,13 +32,13 @@ from backend.auth.permissions import (
     PERM_FINDING_VIEW,
     require_permission,
 )
-from backend.repositories import control_state_repo
+from backend.repositories.control_state_repo import attestation_repo
 from backend.repositories.audit_repo import audit_repo
 from backend.repositories.finding_repo import finding_repo
 from backend.evidence.attestation import (
-    Attestation, AttestationType, AttestationScope,
+    AttestationType, AttestationScope,
     CONFIRMATION_PHRASE, ALLOWED_VALIDITY_DAYS, DEFAULT_VALIDITY_DAYS,
-    create_attestation, revoke_attestation, is_active, is_expiring_soon,
+    create_attestation, is_active, is_expiring_soon,
     days_until_expiry, refresh_status, to_dict,
 )
 from backend.evidence.third_party_coverage import (
@@ -48,8 +48,9 @@ from backend.evidence.third_party_coverage import (
 
 router = APIRouter(prefix="/api/v1/securityos", tags=["Attestations"])
 
-# Shared store (also read by backend/controls/state.py for scoring).
-_attestations: Dict[str, Dict[str, Attestation]] = control_state_repo.attestations  # type: ignore[assignment]
+# Attestations are append-only (attestation_repo); revocation is a separate
+# record and status is derived on read.  backend/controls/state.py reads the
+# same repository for scoring.
 
 
 def _check_not_self_attesting(org_id: str, control_ids: List[str], user_id: str) -> None:
@@ -201,9 +202,7 @@ def create_org_attestation(
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
 
-    if org_id not in _attestations:
-        _attestations[org_id] = {}
-    _attestations[org_id][attest.id] = attest
+    attestation_repo.add(attest)
     audit_repo.record(org_id=org_id, actor_user_id=principal.user_id, action="attestation.created",
                       attestation_id=attest.id, control_ids=list(attest.control_ids),
                       source_name=attest.source_name)
@@ -235,10 +234,8 @@ def list_org_attestations(
     require_org_access(principal, org_id)
     require_permission(principal, org_id, PERM_FINDING_VIEW)
 
-    org_attests = _attestations.get(org_id, {})
-
     results = []
-    for attest in org_attests.values():
+    for attest in attestation_repo.list_by_org(org_id):
         refresh_status(attest)
         if status and attest.status != status:
             continue
@@ -278,9 +275,8 @@ def list_expiring_attestations(
     require_org_access(principal, org_id)
     require_permission(principal, org_id, PERM_FINDING_VIEW)
 
-    org_attests = _attestations.get(org_id, {})
     expiring = []
-    for attest in org_attests.values():
+    for attest in attestation_repo.list_by_org(org_id):
         refresh_status(attest)
         if is_active(attest) and is_expiring_soon(attest):
             expiring.append({
@@ -344,8 +340,7 @@ def get_org_attestation(
     require_org_access(principal, org_id)
     require_permission(principal, org_id, PERM_FINDING_VIEW)
 
-    org_attests = _attestations.get(org_id, {})
-    attest = org_attests.get(attest_id)
+    attest = attestation_repo.get(org_id, attest_id)
     if not attest:
         raise HTTPException(status_code=404, detail=f"Attestation '{attest_id}' not found")
     refresh_status(attest)
@@ -370,20 +365,17 @@ def revoke_org_attestation(
     require_org_access(principal, org_id)
     require_permission(principal, org_id, PERM_ATTESTATION_REVOKE)
 
-    org_attests = _attestations.get(org_id, {})
-    attest = org_attests.get(attest_id)
-    if not attest:
+    try:
+        attest = attestation_repo.revoke(
+            org_id, attest_id,
+            revoked_by_user_id=principal.user_id,
+            revoked_by_name=principal.display_name,
+            reason=payload.reason,
+        )
+    except LookupError:
         raise HTTPException(status_code=404, detail=f"Attestation '{attest_id}' not found")
-
-    if attest.status == "revoked":
+    except ValueError:
         raise HTTPException(status_code=409, detail="Attestation is already revoked.")
-
-    revoke_attestation(
-        attest,
-        revoked_by_user_id=principal.user_id,
-        revoked_by_name=principal.display_name,
-        reason=payload.reason,
-    )
     audit_repo.record(org_id=org_id, actor_user_id=principal.user_id, action="attestation.revoked",
                       attestation_id=attest_id, reason=payload.reason)
 
@@ -417,8 +409,7 @@ def get_reconfirm_prompt(
     require_org_access(principal, org_id)
     require_permission(principal, org_id, PERM_FINDING_VIEW)
 
-    org_attests = _attestations.get(org_id, {})
-    attest = org_attests.get(attest_id)
+    attest = attestation_repo.get(org_id, attest_id)
     if not attest:
         raise HTTPException(status_code=404, detail=f"Attestation '{attest_id}' not found")
     refresh_status(attest)

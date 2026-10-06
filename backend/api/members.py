@@ -30,7 +30,13 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from backend.api.orgs import grant_role, validate_future_iso
 from backend.auth.context import Principal, get_principal, require_org_access
-from backend.auth.permissions import PERM_ORG_MANAGE, permissions_for_roles, require_permission
+from backend.auth.permissions import (
+    PERM_FINDING_ASSIGN,
+    PERM_FINDING_REMEDIATE,
+    PERM_ORG_MANAGE,
+    permissions_for_roles,
+    require_permission,
+)
 from backend.repositories.audit_repo import audit_repo
 from backend.repositories.org_membership_repo import (
     ROLES_REQUIRING_EXPIRY,
@@ -39,6 +45,7 @@ from backend.repositories.org_membership_repo import (
     org_membership_repo,
 )
 from backend.repositories.org_repo import org_repo
+from backend.repositories.user_repo import describe, user_repo
 
 router = APIRouter(prefix="/api/v1/securityos", tags=["Members"])
 
@@ -97,6 +104,7 @@ def _ensure_not_last_admin(org_id: str, user_id: str, keeps_admin: bool) -> None
 @router.get("/me", summary="Your identity, memberships, and effective permissions")
 def get_me(principal: Principal = Depends(get_principal)):
     """Identity from the JWT; roles and permissions from active memberships."""
+    user_repo.upsert(principal.user_id, principal.email, principal.display_name)
     by_org: dict = {}
     for m in org_membership_repo.list_by_user(principal.user_id):
         by_org.setdefault(m.org_id, []).append(m)
@@ -105,9 +113,12 @@ def get_me(principal: Principal = Depends(get_principal)):
     for org_id, rows in sorted(by_org.items()):
         roles = sorted({m.role for m in rows})
         org = org_repo.get(org_id)
+        if org is None:
+            continue  # deleted org
         orgs.append({
             "org_id": org_id,
-            "org_name": org.name if org else None,
+            "org_name": org.name,
+            "msp_id": org.msp_id,
             "roles": roles,
             "permissions": sorted(permissions_for_roles(roles)),
             "memberships": [_serialize_membership(m) for m in rows],
@@ -132,11 +143,27 @@ def list_org_members(
     require_permission(principal, org_id, PERM_ORG_MANAGE)
 
     members = org_membership_repo.list_by_org(org_id, include_expired=include_expired)
+    people = {p["user_id"]: p for p in describe(m.user_id for m in members)}
     return {
         "org_id": org_id,
-        "members": [_serialize_membership(m) for m in members],
+        "members": [{**_serialize_membership(m), "user": people[m.user_id]} for m in members],
         "total": len(members),
     }
+
+
+@router.get("/organizations/{org_id}/assignees", summary="People who can be assigned remediation work")
+def list_assignees(org_id: str, principal: Principal = Depends(get_principal)):
+    """Active members who can remediate.  Requires finding.assign (no org.manage needed)."""
+    require_org_access(principal, org_id)
+    require_permission(principal, org_id, PERM_FINDING_ASSIGN)
+    by_user: dict = {}
+    for m in org_membership_repo.list_by_org(org_id):
+        by_user.setdefault(m.user_id, set()).add(m.role)
+    eligible = [u for u, roles in by_user.items() if PERM_FINDING_REMEDIATE in permissions_for_roles(roles)]
+    people = describe(sorted(eligible))
+    for p in people:
+        p["roles"] = sorted(by_user[p["user_id"]])
+    return {"org_id": org_id, "assignees": people}
 
 
 @router.post("/organizations/{org_id}/members", status_code=201, summary="Grant a role to a user")

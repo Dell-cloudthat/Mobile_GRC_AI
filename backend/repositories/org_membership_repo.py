@@ -190,4 +190,12 @@ class InMemoryOrgMembershipRepository:
 
 # ── Module-level singleton ────────────────────────────────────────────────────
 
-org_membership_repo: InMemoryOrgMembershipRepository = InMemoryOrgMembershipRepository()
+def _build():
+    from backend import db
+    if db.is_enabled():
+        from backend.repositories.sql.memberships import SqlOrgMembershipRepository
+        return SqlOrgMembershipRepository()
+    return InMemoryOrgMembershipRepository()
+
+
+org_membership_repo = _build()

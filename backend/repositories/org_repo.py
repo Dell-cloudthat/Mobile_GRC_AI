@@ -84,6 +84,18 @@ class InMemoryOrgRepository:
             org.updated_at = datetime.now(timezone.utc).isoformat()
             return org
 
+    def update_fields(self, org_id: str, **fields: Any) -> Organization:
+        """Update non-profile fields (contact_email, notes)."""
+        allowed = {"contact_email", "notes"}
+        with self._lock:
+            org = self._orgs[org_id]
+            for k, v in fields.items():
+                if k not in allowed:
+                    raise ValueError(f"Field '{k}' cannot be updated.")
+                setattr(org, k, v)
+            org.updated_at = datetime.now(timezone.utc).isoformat()
+            return org
+
     def delete(self, org_id: str) -> None:
         with self._lock:
             self._orgs.pop(org_id, None)
@@ -93,4 +105,12 @@ class InMemoryOrgRepository:
             self._orgs.clear()
 
 
-org_repo: InMemoryOrgRepository = InMemoryOrgRepository()
+def _build():
+    from backend import db
+    if db.is_enabled():
+        from backend.repositories.sql.orgs import SqlOrgRepository
+        return SqlOrgRepository()
+    return InMemoryOrgRepository()
+
+
+org_repo = _build()

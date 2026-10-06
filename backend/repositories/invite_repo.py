@@ -127,4 +127,12 @@ class InMemoryInviteRepository:
             self._by_hash.clear()
 
 
-invite_repo: InMemoryInviteRepository = InMemoryInviteRepository()
+def _build():
+    from backend import db
+    if db.is_enabled():
+        from backend.repositories.sql.invites import SqlInviteRepository
+        return SqlInviteRepository()
+    return InMemoryInviteRepository()
+
+
+invite_repo = _build()

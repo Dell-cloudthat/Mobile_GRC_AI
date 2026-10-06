@@ -127,6 +127,8 @@ def _serialize_finding(f, *, include_events: bool = False) -> dict:
     }
     if include_events:
         d["events"] = [_serialize_event(e) for e in f.events]
+    d["remediated_by"] = sorted(finding_repo.remediators(f))
+    d["last_submitted_by"] = finding_repo.last_remediator(f)
     return d
 
 
@@ -181,13 +183,15 @@ def create_finding(
 def list_findings(
     org_id: str,
     state: Optional[str] = None,
+    control_id: Optional[str] = None,
     principal: Principal = Depends(get_principal),
 ):
-    """Return all findings for the org, optionally filtered by state."""
+    """Return findings for the org, optionally filtered by state and/or control_id."""
     require_org_access(principal, org_id)
     require_permission(principal, org_id, PERM_FINDING_VIEW)
 
-    findings = finding_repo.list_by_org(org_id)
+    findings = (finding_repo.list_by_control(org_id, control_id) if control_id
+                else finding_repo.list_by_org(org_id))
     if state:
         findings = [f for f in findings if f.state == state]
 

@@ -18,7 +18,8 @@ How anyone gets into the product:
          their JWT.  This is how a client's CEO joins an MSP-provisioned org.
 
   GET    /api/v1/securityos/organizations/{org_id}/audit          (audit.export)
-         The org's audit trail (in-memory until Phase 3 adds the hash chain).
+  GET    /api/v1/securityos/organizations/{org_id}/audit/verify   (audit.export)
+         The org's hash-chained audit trail, and a tamper check over it.
 
 Separation-of-duties rules enforced here:
   - The executive role can only be obtained via invite (or by the creator of a
@@ -59,6 +60,7 @@ from backend.repositories.org_membership_repo import (
     utcnow,
 )
 from backend.repositories.org_repo import org_repo
+from backend.repositories.user_repo import user_repo
 
 router = APIRouter(prefix="/api/v1/securityos", tags=["Organizations"])
 
@@ -182,6 +184,7 @@ def create_organization(
     payload: OrganizationCreate,
     principal: Principal = Depends(get_principal),
 ):
+    user_repo.upsert(principal.user_id, principal.email, principal.display_name)
     org = org_repo.create(
         name=payload.name,
         created_by=principal.user_id,
@@ -275,6 +278,7 @@ def revoke_invite(org_id: str, invite_id: str, principal: Principal = Depends(ge
 
 @router.post("/invites/accept", summary="Accept an invite")
 def accept_invite(payload: InviteAccept, principal: Principal = Depends(get_principal)):
+    user_repo.upsert(principal.user_id, principal.email, principal.display_name)
     invite = invite_repo.find_by_token(payload.token)
     # Same response for unknown, revoked, used, and expired tokens: no oracle.
     if invite is None or invite.status != "pending":
@@ -305,7 +309,12 @@ def accept_invite(payload: InviteAccept, principal: Principal = Depends(get_prin
         expires_at=invite.membership_expires_at,
         via=f"invite:{invite.invite_id}",
     )
-    invite_repo.mark_accepted(invite, principal.user_id)
+    try:
+        invite_repo.mark_accepted(invite, principal.user_id)
+    except ValueError:
+        # Lost a race with a concurrent accept: undo this grant.
+        org_membership_repo.remove_role(principal.user_id, invite.org_id, invite.role)
+        raise HTTPException(status_code=404, detail="Invite not found or no longer valid.")
 
     return {
         "org_id": invite.org_id,
@@ -324,3 +333,14 @@ def get_audit_trail(org_id: str, principal: Principal = Depends(get_principal)):
     require_permission(principal, org_id, PERM_AUDIT_EXPORT)
     events = audit_repo.list_by_org(org_id)
     return {"org_id": org_id, "events": events, "total": len(events)}
+
+
+@router.get("/organizations/{org_id}/audit/verify", summary="Verify the audit log hash chain")
+def verify_audit_trail(org_id: str, principal: Principal = Depends(get_principal)):
+    """
+    Recompute every hash in this org's audit chain.  `valid: false` means a row
+    was edited or removed after it was written; `first_break_seq` points at it.
+    """
+    require_org_access(principal, org_id)
+    require_permission(principal, org_id, PERM_AUDIT_EXPORT)
+    return {"org_id": org_id, **audit_repo.verify(org_id)}

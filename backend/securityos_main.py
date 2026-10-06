@@ -86,10 +86,15 @@ else:
     _allow_methods = ["*"]
     _allow_headers = ["*"]
 
+# Optional regex for preview deployments, e.g. Vercel preview URLs:
+#   CORS_ORIGIN_REGEX=^https://mobile-grc-[a-z0-9-]+-orculx\.vercel\.app$
+_origin_regex = os.environ.get("CORS_ORIGIN_REGEX") or None
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
-    allow_credentials=True,
+    allow_origin_regex=_origin_regex,
+    allow_credentials=False,  # bearer tokens, not cookies
     allow_methods=_allow_methods,
     allow_headers=_allow_headers,
 )
@@ -104,6 +109,12 @@ app.include_router(members_router)
 app.include_router(findings_router)
 app.include_router(orgs_router)
 
+if ENV == "dev" and os.environ.get("AUTH_DEV_PRIVATE_KEY_PATH"):
+    from backend.api.dev import router as dev_router
+
+    app.include_router(dev_router)
+    logger.warning("Dev sign-in endpoint enabled (/api/v1/securityos/dev/token). Never use ENV=dev in production.")
+
 
 @app.get("/health", tags=["Health"])
 def health():
@@ -113,6 +124,35 @@ def health():
         "version": "0.3.0",
         "env": ENV,
     }
+
+
+@app.get("/health/ready", tags=["Health"])
+def ready():
+    """Readiness probe: verifies the database is reachable and fully migrated."""
+    from fastapi.responses import JSONResponse
+    from backend import db
+
+    if not db.is_enabled():
+        return {"status": "ok", "database": "in-memory"}
+    try:
+        from backend.db.migrate import pending
+        if pending():
+            return JSONResponse(status_code=503, content={"status": "error", "database": "migrations pending"})
+    except Exception:
+        logger.exception("Readiness check failed")
+        return JSONResponse(status_code=503, content={"status": "error", "database": "unreachable"})
+    return {"status": "ok", "database": "postgresql"}
+
+
+def validate_runtime_config(env: str) -> None:
+    """Refuse to serve production traffic without durable storage."""
+    from backend import db
+
+    if env == "prod" and not db.is_enabled():
+        raise RuntimeError(
+            "DATABASE_URL must be set when ENV=prod. In-memory storage loses all "
+            "data on restart and is only allowed for ENV=dev or ENV=test."
+        )
 
 
 @app.get("/", include_in_schema=False)
@@ -131,6 +171,7 @@ def root():
 async def startup():
     # Fail fast if required prod config is missing
     validate_prod_config()
+    validate_runtime_config(ENV)
 
     logger.info("SecurityOS API v0.3.0 starting (ENV=%s)", ENV)
     logger.info("  Routes: /api/v1/securityos · /api/v1/securityos/tiers · /api/v1/securityos/msp")

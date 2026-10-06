@@ -30,7 +30,7 @@ from datetime import datetime, timezone
 from typing import Dict, List
 
 from backend.evidence.attestation import is_active
-from backend.repositories import control_state_repo
+from backend.repositories.control_state_repo import attestation_repo, manual_status_repo
 from backend.repositories.finding_repo import finding_repo
 
 # Finding states that mean "remediation is not finished".
@@ -48,11 +48,11 @@ def effective_statuses(org_id: str) -> Dict[str, Dict]:
     result: Dict[str, Dict] = {}
 
     # 5. Manual baseline
-    for control_id, entry in control_state_repo.manual_statuses.get(org_id, {}).items():
+    for control_id, entry in manual_status_repo.get_all(org_id).items():
         result[control_id] = {**entry, "derived_from": "manual"}
 
     # 4. Active attestations
-    for attest in control_state_repo.attestations.get(org_id, {}).values():
+    for attest in attestation_repo.list_by_org(org_id):
         if not is_active(attest):
             continue
         for control_id in attest.control_ids:

@@ -35,6 +35,25 @@ os.environ.setdefault("AUTH_DEV_PRIVATE_KEY_PATH", _KEY_PATH)
 os.environ.setdefault("AUTH_ISSUER", "http://localhost/test-issuer")
 os.environ.setdefault("AUTH_AUDIENCE", "securityos-test")
 
+# ── Optional: run the whole suite against Postgres ────────────────────────────
+# TEST_DATABASE_URL=postgresql://user:pass@localhost:5432/securityos_test pytest backend/tests
+# The schema is DROPPED and re-migrated at session start, so never point this at
+# a database you care about.  Without it, tests use the in-memory repositories.
+if os.environ.get("TEST_DATABASE_URL"):
+    os.environ["DATABASE_URL"] = os.environ["TEST_DATABASE_URL"]
+    from sqlalchemy import create_engine, text as _text
+    from backend.db import database_url as _database_url
+
+    _admin = create_engine(_database_url())
+    with _admin.begin() as _c:
+        _c.execute(_text("DROP SCHEMA IF EXISTS public CASCADE"))
+        _c.execute(_text("CREATE SCHEMA public"))
+    _admin.dispose()
+    from backend.db.migrate import upgrade as _upgrade
+    _upgrade()
+else:
+    os.environ.pop("DATABASE_URL", None)
+
 import pytest
 from fastapi.testclient import TestClient
 

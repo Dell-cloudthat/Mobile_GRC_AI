@@ -36,7 +36,7 @@ from backend.auth.permissions import (
     PERM_ORG_MANAGE,
     require_permission,
 )
-from backend.repositories import control_state_repo
+from backend.repositories.control_state_repo import manual_status_repo
 from backend.repositories.audit_repo import audit_repo
 from backend.repositories.org_repo import org_repo
 from backend.scoring.engine import calculate_score, ControlStatus
@@ -84,9 +84,7 @@ class CopilotMessage(BaseModel):
 
 # ─── Stores ───────────────────────────────────────────────────────────────────
 # Profiles live on the Organization (org_repo); manual statuses live in
-# control_state_repo so the MSP router shares the same state.
-
-_control_statuses = control_state_repo.manual_statuses  # back-compat alias
+# manual_status_repo so the MSP router shares the same state.
 
 
 def _effective_statuses(org_id: str) -> Dict[str, Dict]:
@@ -131,7 +129,7 @@ def apply_manual_status(
         "last_checked": datetime.utcnow().isoformat(),
         "set_by": principal.user_id,
     }
-    control_state_repo.manual_statuses.setdefault(org_id, {})[control_id] = entry
+    manual_status_repo.set(org_id, control_id, entry)
     audit_repo.record(org_id=org_id, actor_user_id=principal.user_id, action="control.status_set",
                       control_id=control_id, status=status_value)
     return entry

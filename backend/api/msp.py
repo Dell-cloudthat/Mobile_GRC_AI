@@ -22,7 +22,7 @@ The MSP staff member who provisions a client org becomes its admin and
 msp_technician.  They can invite the client's executive, but MSP staff can
 never hold the executive role in a client org, so the client always signs off.
 
-Storage: shares org_repo / control_state_repo with the /organizations routes,
+Storage: shares org_repo / manual_status_repo / attestation_repo with /organizations,
 so a client org has exactly one profile and one control state.
 """
 
@@ -273,11 +273,10 @@ def update_managed_org(
             profile_changes[field_name] = value
     if profile_changes:
         org_repo.update_profile(org_id, profile_changes)
-    if payload.contact_email is not None:
-        org.contact_email = payload.contact_email
-    if payload.notes is not None:
-        org.notes = payload.notes
-    org.updated_at = datetime.utcnow().isoformat()
+    field_changes = {k: getattr(payload, k) for k in ("contact_email", "notes") if getattr(payload, k) is not None}
+    if field_changes:
+        org_repo.update_fields(org_id, **field_changes)
+    org = org_repo.get(org_id)
     audit_repo.record(org_id=org_id, actor_user_id=principal.user_id, action="org.profile_updated")
     return {"org_id": org_id, "updated": True, "org": _org_dict(org)}
 
@@ -366,7 +365,7 @@ def update_org_control_status(
     only).  Requires finding.remediate.  "pass" and "not_applicable" → 403: the
     MSP cannot mark its own work as passing; the client's executive approves it.
     """
-    org = _get_msp_org(principal, msp_id, org_id, PERM_FINDING_REMEDIATE)
+    _get_msp_org(principal, msp_id, org_id, PERM_FINDING_REMEDIATE)
     try:
         ControlStatus(status)
     except ValueError:
@@ -376,7 +375,6 @@ def update_org_control_status(
         )
     # Manual input is always recorded as manual evidence, whatever the caller claims.
     entry = apply_manual_status(org_id, control_id, status, notes, principal)
-    org.updated_at = datetime.utcnow().isoformat()
     return {"org_id": org_id, "control_id": control_id, "status": entry["status"]}
 
 

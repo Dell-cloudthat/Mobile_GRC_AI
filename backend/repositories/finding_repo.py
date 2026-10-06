@@ -252,4 +252,12 @@ class InMemoryFindingRepository:
 
 # ── Module-level singleton ────────────────────────────────────────────────────
 
-finding_repo: InMemoryFindingRepository = InMemoryFindingRepository()
+def _build():
+    from backend import db
+    if db.is_enabled():
+        from backend.repositories.sql.findings import SqlFindingRepository
+        return SqlFindingRepository()
+    return InMemoryFindingRepository()
+
+
+finding_repo = _build()
