@@ -1,0 +1,20 @@
+# Only backend/ and compliance/ are copied into the API image.
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/node_modules
+.git
+apps/
+consent-platform/
+docs/
+infra/
+*.md
+**/*.pem
+**/.env
+**/.env.*
+backend/tests/
+# Legacy platform code — not imported by the SecurityOS API
+backend/main.py
+backend/services/
+backend/database/
+backend/api.py

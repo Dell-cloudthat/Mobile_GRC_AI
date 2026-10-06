@@ -53,3 +53,6 @@ backend/.pytest_cache/
 .vite/
 apps/web/dist/
 backend/tests/dev_key.pem
+
+# Private keys (dev token signing keys, etc.)
+*.pem

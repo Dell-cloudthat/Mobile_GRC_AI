@@ -27,6 +27,14 @@ def run_migrations_offline() -> None:
 
 
 def run_migrations_online() -> None:
+    # Reuse a connection handed in by backend.db.migrate (which holds the advisory lock).
+    existing = config.attributes.get("connection")
+    if existing is not None:
+        context.configure(connection=existing, target_metadata=target_metadata)
+        with context.begin_transaction():
+            context.run_migrations()
+        return
+
     connectable = engine_from_config(
         config.get_section(config.config_ini_section, {}),
         prefix="sqlalchemy.",

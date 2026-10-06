@@ -1,0 +1,42 @@
+# Local full stack: Postgres + SecurityOS API (dev sign-in enabled).
+#
+#   openssl genrsa -out backend/dev_key.pem 2048     # once
+#   docker compose up --build
+#   cd apps/web && cp .env.example .env.local && npm run dev
+#
+# API:  http://localhost:8000/docs
+# Web:  http://localhost:5173
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: securityos
+      POSTGRES_PASSWORD: securityos
+      POSTGRES_DB: securityos
+    ports: ["5432:5432"]
+    volumes: ["pgdata:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U securityos"]
+      interval: 3s
+      retries: 20
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ENV: dev
+      DATABASE_URL: postgresql://securityos:securityos@db:5432/securityos
+      AUTH_DEV_PRIVATE_KEY_PATH: /run/secrets/dev_key.pem
+      AUTH_ISSUER: http://localhost/dev-issuer
+      AUTH_AUDIENCE: securityos-dev
+      CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+    volumes:
+      - ./backend/dev_key.pem:/run/secrets/dev_key.pem:ro
+    ports: ["8000:8000"]
+
+volumes:
+  pgdata:

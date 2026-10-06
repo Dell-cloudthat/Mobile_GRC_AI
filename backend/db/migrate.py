@@ -24,8 +24,23 @@ def alembic_config() -> Config:
     return Config(str(_INI))
 
 
+# Arbitrary constant: every replica that starts at the same time takes this lock,
+# so exactly one runs migrations and the rest wait, then see nothing pending.
+_MIGRATION_LOCK_ID = 7_431_100_001
+
+
 def upgrade() -> None:
-    command.upgrade(alembic_config(), "head")
+    from sqlalchemy import text
+
+    with get_engine().connect() as conn:
+        conn.execute(text("SELECT pg_advisory_lock(:id)"), {"id": _MIGRATION_LOCK_ID})
+        try:
+            cfg = alembic_config()
+            cfg.attributes["connection"] = conn
+            command.upgrade(cfg, "head")
+            conn.commit()
+        finally:
+            conn.execute(text("SELECT pg_advisory_unlock(:id)"), {"id": _MIGRATION_LOCK_ID})
 
 
 def pending() -> bool:
