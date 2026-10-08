@@ -1,0 +1,699 @@
+{
+  "version": 1,
+  "reviewed_at": "2026-10-08",
+  "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+
+  "departments": {
+    "Sales": ["sales", "account", "business development", "bdr", "sdr", "revenue"],
+    "Marketing": ["marketing", "brand", "content", "growth", "communications", "pr"],
+    "Engineering": ["engineering", "developer", "software", "dev", "it", "technology", "product"],
+    "Finance": ["finance", "accounting", "controller", "payroll", "billing", "bookkeeping"],
+    "HR": ["hr", "human resources", "people operations", "people ops", "people", "talent", "recruiting"],
+    "Legal": ["legal", "compliance", "counsel", "contracts", "paralegal"],
+    "Operations": ["operations", "ops", "logistics", "admin", "office", "facilities"],
+    "Customer Support": ["support", "customer success", "service", "helpdesk", "client services"],
+    "Executive": ["executive", "leadership", "ceo", "founder", "owner", "management"],
+    "Clinical": ["clinical", "medical", "nursing", "patient", "provider", "care"],
+    "Design": ["design", "creative", "ux", "art"]
+  },
+
+  "categories": {
+    "general_assistant": {
+      "label": "AI chat assistant",
+      "underlying_need": "Faster drafting, summarizing and answering questions",
+      "default_exposure": { "points": 8, "label": "Holds whatever people paste in: emails, documents, customer details" },
+      "reasons": {
+        "default": "Drafting emails and documents, summarizing long text and answering questions faster",
+        "Sales": "Writing prospecting emails and proposals, researching accounts before calls",
+        "Marketing": "Drafting blog posts, social copy and campaign ideas",
+        "Engineering": "Debugging errors, writing scripts and explaining code",
+        "Finance": "Building spreadsheet formulas and summarizing financial documents",
+        "HR": "Writing job descriptions, policies and employee communications",
+        "Legal": "Summarizing contracts and drafting clauses",
+        "Operations": "Writing procedures and summarizing vendor documents",
+        "Customer Support": "Drafting replies to customer tickets",
+        "Executive": "Summarizing reports and drafting board or investor updates",
+        "Clinical": "Summarizing notes and drafting patient letters"
+      },
+      "msp_opportunity": "Roll out a business AI assistant with sign-in, admin controls and an AI acceptable-use policy; migrate personal-account users onto it."
+    },
+    "meeting_assistant": {
+      "label": "Meeting recorder & notetaker",
+      "underlying_need": "Meeting notes and follow-ups without manual typing",
+      "default_exposure": { "points": 15, "label": "Records audio and transcripts of meetings, including external attendees" },
+      "reasons": {
+        "default": "Recording meetings and getting automatic notes and action items",
+        "Sales": "Recording customer calls and pushing notes into the CRM",
+        "Customer Support": "Capturing customer conversations for follow-up",
+        "HR": "Recording interviews and HR conversations",
+        "Executive": "Getting summaries of meetings they couldn't attend",
+        "Clinical": "Transcribing patient-related conversations",
+        "Legal": "Transcribing client and internal legal discussions"
+      },
+      "msp_opportunity": "Standardize on one approved notetaker (Teams Premium / Copilot, Google Meet notes, or one vetted vendor), remove the rest, and set a recording-consent policy."
+    },
+    "writing_assistant": {
+      "label": "Writing & editing assistant",
+      "underlying_need": "Polished writing with less effort",
+      "default_exposure": { "points": 8, "label": "Reads the text people type, often everywhere they type through a browser extension" },
+      "reasons": {
+        "default": "Fixing grammar and rewriting text for tone and clarity",
+        "Sales": "Polishing outbound emails",
+        "Marketing": "Producing and editing marketing copy",
+        "Customer Support": "Making ticket replies sound professional",
+        "HR": "Editing policies and announcements"
+      },
+      "msp_opportunity": "Move to the business plan with admin controls, or the writing features included in Microsoft 365 / Google Workspace."
+    },
+    "coding_assistant": {
+      "label": "AI coding assistant",
+      "underlying_need": "Writing and fixing code faster",
+      "default_exposure": { "points": 10, "label": "Sees source code, which can include secrets and customer data" },
+      "reasons": {
+        "default": "Writing, explaining and fixing code faster",
+        "Engineering": "Autocompleting code, writing tests and refactoring",
+        "Operations": "Writing automation scripts",
+        "Finance": "Writing spreadsheet macros and data scripts"
+      },
+      "msp_opportunity": "Provide a business plan with code-privacy settings enforced and secret scanning on repositories."
+    },
+    "app_builder": {
+      "label": "AI app & website builder",
+      "underlying_need": "Building internal tools or sites without developers",
+      "default_exposure": { "points": 10, "label": "Builds and hosts apps that may hold company data outside IT's view" },
+      "reasons": {
+        "default": "Building quick internal tools, prototypes or websites without developers",
+        "Marketing": "Spinning up landing pages",
+        "Operations": "Building internal trackers and forms",
+        "Sales": "Building demo apps or calculators"
+      },
+      "msp_opportunity": "Offer a governed internal-tools platform and review apps already built for exposed data."
+    },
+    "image_video": {
+      "label": "AI image & video generation",
+      "underlying_need": "Creating visuals and videos without a designer",
+      "default_exposure": { "points": 3, "label": "Mostly prompts and uploaded images; low data exposure unless people upload sensitive files" },
+      "reasons": {
+        "default": "Creating images, graphics and videos without a designer",
+        "Marketing": "Producing social graphics, ads and product images",
+        "Sales": "Making personalized video outreach",
+        "HR": "Producing training videos",
+        "Design": "Concept art and mockups"
+      },
+      "msp_opportunity": "Approve one commercially licensed tool and set rules for using AI-generated images in marketing."
+    },
+    "voice_audio": {
+      "label": "AI voice & audio",
+      "underlying_need": "Voiceovers, transcription and audio editing",
+      "default_exposure": { "points": 8, "label": "Holds voice recordings; voice clones can be misused for fraud" },
+      "reasons": {
+        "default": "Creating voiceovers and editing audio or video",
+        "Marketing": "Voiceovers for videos and podcasts",
+        "HR": "Narrating training content",
+        "Customer Support": "Recording help content"
+      },
+      "msp_opportunity": "Approve one vendor and add voice-clone fraud to security awareness training."
+    },
+    "research_search": {
+      "label": "AI research & search",
+      "underlying_need": "Faster research with sources",
+      "default_exposure": { "points": 6, "label": "Holds research questions and any documents people upload" },
+      "reasons": {
+        "default": "Researching topics quickly with cited sources",
+        "Sales": "Researching prospects and competitors",
+        "Marketing": "Market and competitor research",
+        "Legal": "Researching regulations",
+        "Finance": "Researching companies and markets",
+        "Executive": "Quick briefings on markets and competitors"
+      },
+      "msp_opportunity": "Approve a business research tool or use the research features of the approved assistant."
+    },
+    "presentation_design": {
+      "label": "AI presentations & design",
+      "underlying_need": "Decks and designs without a designer",
+      "default_exposure": { "points": 6, "label": "Holds the content of decks and documents, often shared by public link" },
+      "reasons": {
+        "default": "Producing slide decks and documents quickly",
+        "Sales": "Building pitch decks and proposals",
+        "Marketing": "Designing presentations and one-pagers",
+        "Executive": "Board and investor decks"
+      },
+      "msp_opportunity": "Approve one business-plan design tool with sharing restricted to the company."
+    },
+    "automation_agents": {
+      "label": "AI automation & agents",
+      "underlying_need": "Automating repetitive work across apps",
+      "default_exposure": { "points": 15, "label": "Holds credentials to other business systems and moves data between them" },
+      "reasons": {
+        "default": "Automating repetitive tasks between apps",
+        "Operations": "Automating hand-offs between systems",
+        "Sales": "Syncing leads between forms, email and the CRM",
+        "Marketing": "Automating campaign workflows",
+        "Finance": "Moving invoices and reports between systems",
+        "Customer Support": "Routing and auto-answering tickets"
+      },
+      "msp_opportunity": "Inventory automations, move them to a managed account with least-privilege connections, and offer automation as a managed service."
+    },
+    "embedded_ai": {
+      "label": "AI inside a tool you already use",
+      "underlying_need": "AI features in an existing work tool",
+      "default_exposure": { "points": 4, "label": "Uses data already stored in that tool" },
+      "reasons": {
+        "default": "Using AI features built into a tool the company already uses"
+      },
+      "msp_opportunity": "Confirm the AI add-on is covered by the existing contract and configure its admin settings."
+    },
+    "companion_chat": {
+      "label": "AI companion / character chat",
+      "underlying_need": "Personal use",
+      "default_exposure": { "points": 6, "label": "Consumer app not meant for work data" },
+      "reasons": { "default": "Personal entertainment, not a work tool" },
+      "msp_opportunity": "Block on company accounts and cover it in the acceptable-use policy."
+    }
+  },
+
+  "included_assistants": {
+    "microsoft": {
+      "name": "Microsoft 365 Copilot Chat",
+      "detail": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models).",
+      "app_id": "microsoft_copilot"
+    },
+    "google": {
+      "name": "Gemini in Google Workspace",
+      "detail": "Included in Google Workspace business plans; Workspace data isn't used to train models.",
+      "app_id": "gemini"
+    }
+  },
+
+  "apps": [
+    {
+      "id": "chatgpt", "name": "ChatGPT", "vendor": "OpenAI", "category": "general_assistant",
+      "hq_country": "US", "website": "https://openai.com/chatgpt",
+      "summary": "General-purpose AI assistant for writing, analysis, coding and file Q&A.",
+      "common_uses": ["Drafting emails and documents", "Summarizing files and meetings", "Analyzing spreadsheets", "Coding help"],
+      "match": { "names": ["chatgpt", "openai", "chat gpt"], "domains": ["chatgpt.com", "chat.openai.com", "openai.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Plus / Pro", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "claude", "name": "Claude", "vendor": "Anthropic", "category": "general_assistant",
+      "hq_country": "US", "website": "https://claude.ai",
+      "summary": "General-purpose AI assistant for writing, analysis, research and coding.",
+      "common_uses": ["Long-document analysis", "Drafting and editing", "Coding help", "Research"],
+      "match": { "names": ["claude", "anthropic"], "domains": ["claude.ai", "anthropic.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro / Max", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Team / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "gemini", "name": "Gemini", "vendor": "Google", "category": "general_assistant",
+      "hq_country": "US", "website": "https://gemini.google.com",
+      "summary": "Google's AI assistant, available as a consumer app and inside Google Workspace.",
+      "common_uses": ["Drafting in Gmail and Docs", "Summarizing", "Research", "Image generation"],
+      "match": { "names": ["gemini", "google gemini", "bard"], "domains": ["gemini.google.com", "bard.google.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Personal Google account", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Google Workspace", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["work_account_means_business"], "alternatives": []
+    },
+    {
+      "id": "microsoft_copilot", "name": "Microsoft Copilot", "vendor": "Microsoft", "category": "general_assistant",
+      "hq_country": "US", "website": "https://copilot.microsoft.com",
+      "summary": "Microsoft's AI assistant: consumer Copilot on personal accounts, Microsoft 365 Copilot Chat on work accounts.",
+      "common_uses": ["Drafting and summarizing", "Questions about work files (with a Microsoft 365 Copilot license)", "Web research"],
+      "match": { "names": ["microsoft copilot", "copilot", "bing chat", "microsoft 365 copilot"], "domains": ["copilot.microsoft.com", "copilot.cloud.microsoft", "m365.cloud.microsoft"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Personal Microsoft account", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Microsoft 365 work account", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["work_account_means_business"], "alternatives": []
+    },
+    {
+      "id": "perplexity", "name": "Perplexity", "vendor": "Perplexity AI", "category": "research_search",
+      "hq_country": "US", "website": "https://www.perplexity.ai",
+      "summary": "AI search engine that answers questions with cited web sources.",
+      "common_uses": ["Researching prospects and competitors", "Fact-finding with sources", "Summarizing uploaded files"],
+      "match": { "names": ["perplexity"], "domains": ["perplexity.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Enterprise Pro", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "deepseek", "name": "DeepSeek", "vendor": "DeepSeek (Hangzhou DeepSeek AI)", "category": "general_assistant",
+      "hq_country": "CN", "website": "https://www.deepseek.com",
+      "summary": "Chinese AI assistant. Its privacy policy states user data is stored on servers in the People's Republic of China.",
+      "common_uses": ["General chat and coding help", "Trying a free alternative to ChatGPT"],
+      "match": { "names": ["deepseek", "deep seek"], "domains": ["deepseek.com", "chat.deepseek.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free app", "trains_on_inputs": "yes", "admin_controls": false },
+        "business": null
+      },
+      "soc2": false, "flags": ["data_in_restricted_jurisdiction"], "alternatives": ["microsoft_copilot", "gemini", "chatgpt"],
+      "notes": "Several governments and agencies have restricted its use on official devices."
+    },
+    {
+      "id": "qwen", "name": "Qwen Chat", "vendor": "Alibaba Cloud", "category": "general_assistant",
+      "hq_country": "CN", "website": "https://chat.qwen.ai",
+      "summary": "Alibaba's AI assistant.",
+      "common_uses": ["General chat and coding help"],
+      "match": { "names": ["qwen", "tongyi"], "domains": ["chat.qwen.ai", "qwen.ai", "tongyi.aliyun.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free app", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": null
+      },
+      "soc2": null, "flags": ["data_in_restricted_jurisdiction"], "alternatives": ["microsoft_copilot", "gemini", "chatgpt"]
+    },
+    {
+      "id": "grok", "name": "Grok", "vendor": "xAI", "category": "general_assistant",
+      "hq_country": "US", "website": "https://grok.com",
+      "summary": "xAI's AI assistant, also built into X (Twitter).",
+      "common_uses": ["General chat", "Real-time news and social research"],
+      "match": { "names": ["grok", "xai"], "domains": ["grok.com", "x.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / X Premium / SuperGrok", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": [], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "meta_ai", "name": "Meta AI", "vendor": "Meta", "category": "general_assistant",
+      "hq_country": "US", "website": "https://www.meta.ai",
+      "summary": "Meta's consumer AI assistant inside WhatsApp, Instagram, Facebook and Messenger.",
+      "common_uses": ["Quick questions inside messaging apps", "Image generation"],
+      "match": { "names": ["meta ai"], "domains": ["meta.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Personal account", "trains_on_inputs": "yes", "admin_controls": false },
+        "business": null
+      },
+      "soc2": null, "flags": ["not_for_business"], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "mistral_le_chat", "name": "Le Chat", "vendor": "Mistral AI", "category": "general_assistant",
+      "hq_country": "FR", "website": "https://chat.mistral.ai",
+      "summary": "Mistral's AI assistant, a European alternative.",
+      "common_uses": ["General chat", "Document analysis", "Coding help"],
+      "match": { "names": ["le chat", "mistral"], "domains": ["chat.mistral.ai", "mistral.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Team / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": null, "flags": [], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "poe", "name": "Poe", "vendor": "Quora", "category": "general_assistant",
+      "hq_country": "US", "website": "https://poe.com",
+      "summary": "One app that routes chats to many different AI models and third-party bots.",
+      "common_uses": ["Trying several AI models in one place"],
+      "match": { "names": ["poe"], "domains": ["poe.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Subscription", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": null
+      },
+      "soc2": null, "flags": ["routes_to_third_party_models"], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "character_ai", "name": "Character.AI", "vendor": "Character Technologies", "category": "companion_chat",
+      "hq_country": "US", "website": "https://character.ai",
+      "summary": "Consumer app for chatting with AI characters.",
+      "common_uses": ["Entertainment"],
+      "match": { "names": ["character.ai", "character ai"], "domains": ["character.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / c.ai+", "trains_on_inputs": "yes", "admin_controls": false },
+        "business": null
+      },
+      "soc2": null, "flags": ["not_for_business"], "alternatives": []
+    },
+    {
+      "id": "otter", "name": "Otter.ai", "vendor": "Otter.ai", "category": "meeting_assistant",
+      "hq_country": "US", "website": "https://otter.ai",
+      "summary": "Meeting transcription and AI notes; can join calendar meetings automatically.",
+      "common_uses": ["Transcribing meetings", "Automatic meeting summaries", "Searchable call archive"],
+      "match": { "names": ["otter", "otter.ai", "otterpilot"], "domains": ["otter.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Basic / Pro", "trains_on_inputs": "yes", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["auto_joins_meetings"], "alternatives": ["microsoft_copilot", "fireflies"],
+      "notes": "Its privacy policy describes training on de-identified recordings."
+    },
+    {
+      "id": "fireflies", "name": "Fireflies.ai", "vendor": "Fireflies.ai", "category": "meeting_assistant",
+      "hq_country": "US", "website": "https://fireflies.ai",
+      "summary": "AI notetaker that joins meetings, transcribes and syncs notes to CRMs.",
+      "common_uses": ["Recording sales calls", "CRM note sync", "Meeting search"],
+      "match": { "names": ["fireflies", "fireflies.ai", "fred from fireflies"], "domains": ["fireflies.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "no", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["auto_joins_meetings"], "alternatives": ["microsoft_copilot"]
+    },
+    {
+      "id": "read_ai", "name": "Read AI", "vendor": "Read AI", "category": "meeting_assistant",
+      "hq_country": "US", "website": "https://www.read.ai",
+      "summary": "Meeting assistant that joins calls and sends recaps to attendees.",
+      "common_uses": ["Meeting recaps", "Meeting analytics"],
+      "match": { "names": ["read ai", "read.ai"], "domains": ["read.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["auto_joins_meetings"], "alternatives": ["microsoft_copilot", "fireflies"],
+      "notes": "Recaps go to attendees, which often prompts new people to sign up, so it spreads on its own."
+    },
+    {
+      "id": "fathom", "name": "Fathom", "vendor": "Fathom Video", "category": "meeting_assistant",
+      "hq_country": "US", "website": "https://fathom.video",
+      "summary": "AI notetaker for Zoom, Meet and Teams, with a popular free plan.",
+      "common_uses": ["Free meeting recordings and summaries", "CRM sync"],
+      "match": { "names": ["fathom"], "domains": ["fathom.video"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Premium", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Team / Business", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["auto_joins_meetings"], "alternatives": ["microsoft_copilot", "fireflies"]
+    },
+    {
+      "id": "tldv", "name": "tl;dv", "vendor": "tl;dv", "category": "meeting_assistant",
+      "hq_country": "DE", "website": "https://tldv.io",
+      "summary": "Meeting recorder and AI notes for Meet, Zoom and Teams.",
+      "common_uses": ["Recording meetings", "Highlight clips", "CRM sync"],
+      "match": { "names": ["tl;dv", "tldv"], "domains": ["tldv.io"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["auto_joins_meetings"], "alternatives": ["microsoft_copilot", "fireflies"]
+    },
+    {
+      "id": "granola", "name": "Granola", "vendor": "Granola", "category": "meeting_assistant",
+      "hq_country": "GB", "website": "https://www.granola.ai",
+      "summary": "Desktop AI notepad that transcribes meetings from the computer's audio, with no bot joining.",
+      "common_uses": ["Meeting notes without a visible bot"],
+      "match": { "names": ["granola"], "domains": ["granola.ai", "granola.so"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Individual", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["records_without_bot"], "alternatives": ["microsoft_copilot", "fireflies"],
+      "notes": "Because no bot joins, other attendees may not know the meeting is being transcribed."
+    },
+    {
+      "id": "grammarly", "name": "Grammarly", "vendor": "Grammarly (Superhuman)", "category": "writing_assistant",
+      "hq_country": "US", "website": "https://www.grammarly.com",
+      "summary": "Writing assistant and browser extension that checks and rewrites text wherever people type.",
+      "common_uses": ["Grammar and tone fixes", "Rewriting emails", "AI drafting"],
+      "match": { "names": ["grammarly"], "domains": ["grammarly.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["reads_everywhere_you_type"], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "quillbot", "name": "QuillBot", "vendor": "Learneo", "category": "writing_assistant",
+      "hq_country": "US", "website": "https://quillbot.com",
+      "summary": "Paraphrasing, summarizing and grammar tool.",
+      "common_uses": ["Rewording text", "Summarizing articles"],
+      "match": { "names": ["quillbot"], "domains": ["quillbot.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Premium", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Team", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": [], "alternatives": ["grammarly", "microsoft_copilot"]
+    },
+    {
+      "id": "jasper", "name": "Jasper", "vendor": "Jasper AI", "category": "writing_assistant",
+      "hq_country": "US", "website": "https://www.jasper.ai",
+      "summary": "AI marketing content platform with brand-voice controls.",
+      "common_uses": ["Marketing copy", "Campaign content", "Brand-voice writing"],
+      "match": { "names": ["jasper", "jasper ai"], "domains": ["jasper.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Creator / Pro", "trains_on_inputs": "no", "admin_controls": false },
+        "business": { "label": "Business", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": []
+    },
+    {
+      "id": "copy_ai", "name": "Copy.ai", "vendor": "Copy.ai", "category": "writing_assistant",
+      "hq_country": "US", "website": "https://www.copy.ai",
+      "summary": "AI platform for sales and marketing copy and workflows.",
+      "common_uses": ["Sales emails", "Marketing copy", "Content workflows"],
+      "match": { "names": ["copy.ai", "copyai"], "domains": ["copy.ai"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Starter", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Advanced / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": [], "alternatives": ["jasper", "microsoft_copilot"]
+    },
+    {
+      "id": "notion_ai", "name": "Notion AI", "vendor": "Notion Labs", "category": "embedded_ai",
+      "hq_country": "US", "website": "https://www.notion.com/product/ai",
+      "summary": "AI features inside Notion for writing, summarizing and searching workspace content.",
+      "common_uses": ["Summarizing pages", "Searching workspace knowledge", "Drafting docs"],
+      "match": { "names": ["notion ai", "notion"], "domains": ["notion.so", "notion.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Plus", "trains_on_inputs": "no", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": []
+    },
+    {
+      "id": "zoom_ai_companion", "name": "Zoom AI Companion", "vendor": "Zoom", "category": "embedded_ai",
+      "hq_country": "US", "website": "https://www.zoom.com/en/products/ai-assistant/",
+      "summary": "AI meeting summaries and assistance built into paid Zoom accounts.",
+      "common_uses": ["Meeting summaries", "Smart recordings", "Chat drafting"],
+      "match": { "names": ["zoom ai companion", "ai companion"], "domains": [], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Personal Zoom account", "trains_on_inputs": "no", "admin_controls": false },
+        "business": { "label": "Company Zoom account", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": []
+    },
+    {
+      "id": "github_copilot", "name": "GitHub Copilot", "vendor": "GitHub (Microsoft)", "category": "coding_assistant",
+      "hq_country": "US", "website": "https://github.com/features/copilot",
+      "summary": "AI pair programmer in code editors and on GitHub.",
+      "common_uses": ["Code completion", "Writing tests", "Explaining code"],
+      "match": { "names": ["github copilot"], "domains": ["copilot.github.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro (personal)", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": []
+    },
+    {
+      "id": "cursor", "name": "Cursor", "vendor": "Anysphere", "category": "coding_assistant",
+      "hq_country": "US", "website": "https://cursor.com",
+      "summary": "AI code editor that can read and change a whole codebase.",
+      "common_uses": ["Writing and refactoring code", "Codebase Q&A", "Agentic coding"],
+      "match": { "names": ["cursor", "anysphere"], "domains": ["cursor.com", "cursor.sh"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Hobby / Pro (privacy mode optional)", "trains_on_inputs": "opt_out", "admin_controls": false },
+        "business": { "label": "Teams / Enterprise (privacy mode enforced)", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": ["github_copilot"]
+    },
+    {
+      "id": "replit", "name": "Replit", "vendor": "Replit", "category": "app_builder",
+      "hq_country": "US", "website": "https://replit.com",
+      "summary": "Browser IDE with an AI agent that builds and hosts apps.",
+      "common_uses": ["Building internal tools", "Prototyping apps", "Hosting small apps"],
+      "match": { "names": ["replit"], "domains": ["replit.com", "repl.co"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Starter / Core", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Teams / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["hosts_apps"], "alternatives": []
+    },
+    {
+      "id": "lovable", "name": "Lovable", "vendor": "Lovable", "category": "app_builder",
+      "hq_country": "SE", "website": "https://lovable.dev",
+      "summary": "AI app builder that turns prompts into hosted web apps.",
+      "common_uses": ["Building internal tools", "Landing pages", "Prototypes"],
+      "match": { "names": ["lovable"], "domains": ["lovable.dev", "lovable.app"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["hosts_apps"], "alternatives": []
+    },
+    {
+      "id": "v0", "name": "v0", "vendor": "Vercel", "category": "app_builder",
+      "hq_country": "US", "website": "https://v0.app",
+      "summary": "AI tool that generates web apps and UI from prompts.",
+      "common_uses": ["Generating UI", "Prototyping web apps"],
+      "match": { "names": ["v0", "v0.dev"], "domains": ["v0.dev", "v0.app"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Premium", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Team / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["hosts_apps"], "alternatives": []
+    },
+    {
+      "id": "midjourney", "name": "Midjourney", "vendor": "Midjourney", "category": "image_video",
+      "hq_country": "US", "website": "https://www.midjourney.com",
+      "summary": "AI image generator; images are visible in a public gallery unless Stealth mode is on (higher plans).",
+      "common_uses": ["Marketing visuals", "Concept art", "Product mockups"],
+      "match": { "names": ["midjourney"], "domains": ["midjourney.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Basic / Standard", "trains_on_inputs": "yes", "admin_controls": false },
+        "business": null
+      },
+      "soc2": null, "flags": ["public_by_default"], "alternatives": ["adobe_firefly", "canva_ai"]
+    },
+    {
+      "id": "canva_ai", "name": "Canva AI", "vendor": "Canva", "category": "presentation_design",
+      "hq_country": "AU", "website": "https://www.canva.com",
+      "summary": "Design platform with AI image, writing and presentation features.",
+      "common_uses": ["Social graphics", "Presentations", "AI image generation"],
+      "match": { "names": ["canva", "magic studio"], "domains": ["canva.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro", "trains_on_inputs": "no", "admin_controls": false },
+        "business": { "label": "Teams / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": []
+    },
+    {
+      "id": "adobe_firefly", "name": "Adobe Firefly", "vendor": "Adobe", "category": "image_video",
+      "hq_country": "US", "website": "https://www.adobe.com/products/firefly.html",
+      "summary": "Adobe's generative image and video models, designed for commercial use.",
+      "common_uses": ["Marketing images", "Photo editing", "Video generation"],
+      "match": { "names": ["firefly", "adobe firefly"], "domains": ["firefly.adobe.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Individual", "trains_on_inputs": "no", "admin_controls": false },
+        "business": { "label": "Teams / Enterprise", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": [], "alternatives": []
+    },
+    {
+      "id": "heygen", "name": "HeyGen", "vendor": "HeyGen", "category": "image_video",
+      "hq_country": "US", "website": "https://www.heygen.com",
+      "summary": "AI video avatars, voice cloning and video translation.",
+      "common_uses": ["Personalized sales videos", "Training videos", "Video translation"],
+      "match": { "names": ["heygen"], "domains": ["heygen.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Creator", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Team / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["voice_or_likeness_cloning"], "alternatives": ["synthesia"]
+    },
+    {
+      "id": "synthesia", "name": "Synthesia", "vendor": "Synthesia", "category": "image_video",
+      "hq_country": "GB", "website": "https://www.synthesia.io",
+      "summary": "AI video platform with avatars, aimed at corporate training.",
+      "common_uses": ["Training videos", "Internal communications"],
+      "match": { "names": ["synthesia"], "domains": ["synthesia.io"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Starter / Creator", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["voice_or_likeness_cloning"], "alternatives": []
+    },
+    {
+      "id": "elevenlabs", "name": "ElevenLabs", "vendor": "ElevenLabs", "category": "voice_audio",
+      "hq_country": "US", "website": "https://elevenlabs.io",
+      "summary": "AI voice generation, voice cloning and dubbing.",
+      "common_uses": ["Voiceovers", "Voice cloning", "Dubbing videos"],
+      "match": { "names": ["elevenlabs", "eleven labs"], "domains": ["elevenlabs.io"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Starter / Creator", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["voice_or_likeness_cloning"], "alternatives": []
+    },
+    {
+      "id": "descript", "name": "Descript", "vendor": "Descript", "category": "voice_audio",
+      "hq_country": "US", "website": "https://www.descript.com",
+      "summary": "Edit audio and video by editing the transcript, with AI voice features.",
+      "common_uses": ["Podcast and video editing", "Transcription", "AI voice fixes"],
+      "match": { "names": ["descript"], "domains": ["descript.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Hobbyist / Creator", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["voice_or_likeness_cloning"], "alternatives": []
+    },
+    {
+      "id": "gamma", "name": "Gamma", "vendor": "Gamma Tech", "category": "presentation_design",
+      "hq_country": "US", "website": "https://gamma.app",
+      "summary": "AI presentation, document and website generator.",
+      "common_uses": ["Pitch decks", "Proposals", "One-page sites"],
+      "match": { "names": ["gamma", "gamma.app"], "domains": ["gamma.app"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Plus / Pro", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Team / Business", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["public_link_sharing"], "alternatives": ["microsoft_copilot", "canva_ai"]
+    },
+    {
+      "id": "chatpdf", "name": "ChatPDF", "vendor": "ChatPDF", "category": "research_search",
+      "hq_country": null, "website": "https://www.chatpdf.com",
+      "summary": "Upload a PDF and ask questions about it.",
+      "common_uses": ["Summarizing contracts and reports", "Q&A over PDFs"],
+      "match": { "names": ["chatpdf", "chat pdf"], "domains": ["chatpdf.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Plus", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": null
+      },
+      "soc2": null, "flags": [], "alternatives": ["microsoft_copilot", "gemini"]
+    },
+    {
+      "id": "zapier", "name": "Zapier (AI & Agents)", "vendor": "Zapier", "category": "automation_agents",
+      "hq_country": "US", "website": "https://zapier.com",
+      "summary": "Workflow automation across thousands of apps, with AI steps and agents.",
+      "common_uses": ["Syncing leads and records", "AI email triage", "Automated reports"],
+      "match": { "names": ["zapier"], "domains": ["zapier.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Pro (personal)", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Team / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["holds_credentials"], "alternatives": ["copilot_studio"]
+    },
+    {
+      "id": "make", "name": "Make", "vendor": "Celonis", "category": "automation_agents",
+      "hq_country": "CZ", "website": "https://www.make.com",
+      "summary": "Visual workflow automation with AI modules and agents.",
+      "common_uses": ["Multi-step automations", "AI content pipelines"],
+      "match": { "names": ["make.com", "integromat"], "domains": ["make.com", "integromat.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Free / Core / Pro", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Teams / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["holds_credentials"], "alternatives": ["copilot_studio"]
+    },
+    {
+      "id": "n8n", "name": "n8n", "vendor": "n8n", "category": "automation_agents",
+      "hq_country": "DE", "website": "https://n8n.io",
+      "summary": "Workflow automation and AI agents; can be self-hosted.",
+      "common_uses": ["AI agents", "Internal automations", "Self-hosted workflows"],
+      "match": { "names": ["n8n"], "domains": ["n8n.io", "n8n.cloud"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Cloud Starter / self-hosted community", "trains_on_inputs": "unknown", "admin_controls": false },
+        "business": { "label": "Business / Enterprise", "trains_on_inputs": "unknown", "admin_controls": true }
+      },
+      "soc2": null, "flags": ["holds_credentials"], "alternatives": ["copilot_studio"]
+    },
+    {
+      "id": "copilot_studio", "name": "Microsoft Copilot Studio", "vendor": "Microsoft", "category": "automation_agents",
+      "hq_country": "US", "website": "https://www.microsoft.com/microsoft-copilot/microsoft-copilot-studio",
+      "summary": "Build custom AI agents connected to Microsoft 365 and business data.",
+      "common_uses": ["Internal help bots", "Agents over SharePoint data", "Process automation"],
+      "match": { "names": ["copilot studio", "power virtual agents"], "domains": ["copilotstudio.microsoft.com"], "app_ids": [] },
+      "tiers": {
+        "consumer": { "label": "Trial / personal environment", "trains_on_inputs": "no", "admin_controls": false },
+        "business": { "label": "Licensed tenant", "trains_on_inputs": "no", "admin_controls": true }
+      },
+      "soc2": true, "flags": ["holds_credentials", "work_account_means_business"], "alternatives": [],
+      "notes": "Agents built by staff can expose SharePoint data more widely than intended; review sharing before publishing agents."
+    }
+  ]
+}

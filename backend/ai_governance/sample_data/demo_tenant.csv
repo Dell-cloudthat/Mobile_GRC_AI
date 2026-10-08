@@ -1,0 +1,51 @@
+App,AppId,Domain,User,Department,Scopes,ConsentType,LastSignIn
+AI Meeting Notes Pro,,,kate.morgan@riversidehealth.example,Clinical - Nursing,openid profile email User.Read Mail.Read Calendars.Read offline_access,Principal,2026-10-04T17:15:00Z
+Adobe Acrobat,,,jen.wright@riversidehealth.example,Accounting,openid profile email User.Read offline_access,Principal,2026-10-02T13:15:00Z
+Canva,,,diana.fox@riversidehealth.example,Leadership,openid profile email User.Read offline_access,Principal,2026-10-05T09:15:00Z
+Canva,,,lily.chen@riversidehealth.example,Marketing,openid profile email User.Read offline_access,Principal,2026-10-05T17:15:00Z
+Canva,,,omar.haddad@riversidehealth.example,Marketing,openid profile email User.Read offline_access,Principal,2026-10-06T11:15:00Z
+Canva,,,sara.kim@riversidehealth.example,Marketing,openid profile email User.Read offline_access,Principal,2026-10-03T09:15:00Z
+ChatGPT,,,chris.owen@riversidehealth.example,Executive,openid profile email User.Read offline_access,Principal,2026-10-04T14:15:00Z
+ChatGPT,,,dev.patel@riversidehealth.example,Sales,openid profile email User.Read offline_access,Principal,2026-10-04T18:15:00Z
+ChatGPT,,,dr.emily.shaw@riversidehealth.example,Clinical,openid profile email User.Read offline_access,Principal,2026-10-01T09:15:00Z
+ChatGPT,,,ivy.hall@riversidehealth.example,Customer Support,openid profile email User.Read offline_access,Principal,2026-10-01T11:15:00Z
+ChatGPT,,,lily.chen@riversidehealth.example,Marketing,openid profile email User.Read offline_access,Principal,2026-10-07T16:15:00Z
+ChatGPT,,,maria.lopez@riversidehealth.example,Sales,openid profile email User.Read offline_access,Principal,2026-10-03T10:15:00Z
+ChatGPT,,,nina.rossi@riversidehealth.example,HR,openid profile email User.Read offline_access,Principal,2026-10-05T11:15:00Z
+ChatGPT,,,omar.haddad@riversidehealth.example,Marketing,openid profile email User.Read offline_access,Principal,2026-10-01T13:15:00Z
+ChatGPT,,,raj.iyer@riversidehealth.example,Finance,openid profile email User.Read offline_access,Principal,2026-10-05T08:15:00Z
+ChatGPT,,,tom.nguyen@riversidehealth.example,Sales,openid profile email User.Read offline_access,Principal,2026-10-01T09:15:00Z
+Claude,,,raj.iyer@riversidehealth.example,Finance,openid profile email User.Read offline_access,Principal,2026-10-05T14:15:00Z
+Claude,,,sam.ortiz@riversidehealth.example,Software Engineering,openid profile email User.Read offline_access,Principal,2026-10-04T18:15:00Z
+Cursor,,,alex.ruiz@riversidehealth.example,IT,openid profile email User.Read offline_access,Principal,2026-10-03T11:15:00Z
+Cursor,,,sam.ortiz@riversidehealth.example,Software Engineering,openid profile email User.Read offline_access,Principal,2026-10-04T13:15:00Z
+DocuSign,,,chris.owen@riversidehealth.example,Executive,openid profile email User.Read offline_access,Principal,2026-10-04T08:15:00Z
+DocuSign,,,nina.rossi@riversidehealth.example,HR,openid profile email User.Read offline_access,Principal,2026-10-02T15:15:00Z
+Fireflies.ai Notetaker,,,dev.patel@riversidehealth.example,Sales,openid profile email User.Read Calendars.Read offline_access,Principal,2026-10-07T18:15:00Z
+Fireflies.ai Notetaker,,,tom.nguyen@riversidehealth.example,Sales,openid profile email User.Read Calendars.Read offline_access,Principal,2026-10-02T09:15:00Z
+Gamma,,,chris.owen@riversidehealth.example,Executive,openid profile email User.Read offline_access,Principal,2026-10-05T08:15:00Z
+Gamma,,,maria.lopez@riversidehealth.example,Sales,openid profile email User.Read offline_access,Principal,2026-10-05T11:15:00Z
+Grammarly,,,ivy.hall@riversidehealth.example,Customer Support,openid profile email User.Read offline_access,Principal,2026-10-02T16:15:00Z
+Grammarly,,,jack.tran@riversidehealth.example,Client Services,openid profile email User.Read offline_access,Principal,2026-10-01T17:15:00Z
+Grammarly,,,jen.wright@riversidehealth.example,Accounting,openid profile email User.Read offline_access,Principal,2026-10-03T14:15:00Z
+Grammarly,,,lily.chen@riversidehealth.example,Marketing,openid profile email User.Read offline_access,Principal,2026-10-02T08:15:00Z
+Grammarly,,,nina.rossi@riversidehealth.example,HR,openid profile email User.Read offline_access,Principal,2026-10-03T16:15:00Z
+Grammarly,,,sara.kim@riversidehealth.example,Marketing,openid profile email User.Read offline_access,Principal,2026-10-05T10:15:00Z
+HeyGen,,,aisha.khan@riversidehealth.example,Sales,openid profile email User.Read offline_access,Principal,2026-10-07T10:15:00Z
+Microsoft 365 Copilot,,,alex.ruiz@riversidehealth.example,IT,openid profile email User.Read offline_access,AllPrincipals,2026-10-06T11:15:00Z
+Microsoft 365 Copilot,,,grace.lee@riversidehealth.example,Operations,openid profile email User.Read offline_access,AllPrincipals,2026-10-01T17:15:00Z
+Microsoft 365 Copilot,,,henry.cole@riversidehealth.example,Office Admin,openid profile email User.Read offline_access,AllPrincipals,2026-10-03T16:15:00Z
+Otter.ai,,,aisha.khan@riversidehealth.example,Sales,openid profile email User.Read Calendars.Read OnlineMeetings.Read offline_access,Principal,2026-10-04T08:15:00Z
+Otter.ai,,,ben.carter@riversidehealth.example,Inside Sales,openid profile email User.Read Calendars.Read OnlineMeetings.Read offline_access,Principal,2026-10-07T17:15:00Z
+Otter.ai,,,diana.fox@riversidehealth.example,Leadership,openid profile email User.Read Calendars.Read OnlineMeetings.Read offline_access,Principal,2026-10-01T11:15:00Z
+Otter.ai,,,dr.mark.ellis@riversidehealth.example,Clinical,openid profile email User.Read Calendars.Read OnlineMeetings.Read offline_access,Principal,2026-10-06T18:15:00Z
+Otter.ai,,,maria.lopez@riversidehealth.example,Sales,openid profile email User.Read Calendars.Read OnlineMeetings.Read offline_access,Principal,2026-10-01T16:15:00Z
+Read AI Meeting Assistant,,,chris.owen@riversidehealth.example,Executive,openid profile email User.Read Calendars.Read Mail.Read offline_access,Principal,2026-10-05T08:15:00Z
+Read AI Meeting Assistant,,,grace.lee@riversidehealth.example,Operations,openid profile email User.Read Calendars.Read Mail.Read offline_access,Principal,2026-10-05T17:15:00Z
+Read AI Meeting Assistant,,,paul.adams@riversidehealth.example,People Operations,openid profile email User.Read Calendars.Read Mail.Read offline_access,Principal,2026-10-04T08:15:00Z
+Zapier,,,grace.lee@riversidehealth.example,Operations,openid profile email User.Read Mail.ReadWrite Files.ReadWrite.All offline_access,Principal,2026-10-07T13:15:00Z
+,,chat.deepseek.com,kate.morgan@riversidehealth.example,Clinical - Nursing,,,2026-10-06T15:15:00Z
+,,chat.deepseek.com,liam.brooks@riversidehealth.example,Patient Services,,,2026-10-04T13:15:00Z
+,,www.perplexity.ai,diana.fox@riversidehealth.example,Leadership,,,2026-10-05T14:15:00Z
+,,www.perplexity.ai,omar.haddad@riversidehealth.example,Marketing,,,2026-10-03T17:15:00Z
+,,www.perplexity.ai,raj.iyer@riversidehealth.example,Finance,,,2026-10-01T09:15:00Z

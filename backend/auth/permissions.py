@@ -27,6 +27,13 @@ Role matrix (the single source of truth — tests assert against this table):
 | org.manage                |   ✓   |           |          |                |         |
 | billing.manage            |   ✓   |           |          |                |         |
 | audit.export              |   ✓   |     ✓     |          |                |    ✓    |
+| ai.import                 |   ✓   |           |    ✓     |       ✓        |         |
+| ai.decide                 |       |     ✓     |          |                |         |
+
+Shadow AI (v1): anyone with finding.view sees the AI inventory.  Importing
+discovery data is operational work (admin, engineer, MSP technician).
+Approving, blocking or accepting the risk of an AI tool is a business policy
+decision, so only an executive of the client makes it.
 """
 
 from __future__ import annotations
@@ -50,11 +57,14 @@ PERM_RISK_ACCEPT           = "risk.accept"
 PERM_ORG_MANAGE            = "org.manage"
 PERM_BILLING_MANAGE        = "billing.manage"
 PERM_AUDIT_EXPORT          = "audit.export"
+PERM_AI_IMPORT             = "ai.import"
+PERM_AI_DECIDE             = "ai.decide"
 
 ALL_PERMISSIONS: FrozenSet[str] = frozenset({
     PERM_FINDING_VIEW, PERM_FINDING_ASSIGN, PERM_FINDING_REMEDIATE,
     PERM_FINDING_APPROVE_CLOSE, PERM_ATTESTATION_CREATE, PERM_ATTESTATION_REVOKE,
     PERM_RISK_ACCEPT, PERM_ORG_MANAGE, PERM_BILLING_MANAGE, PERM_AUDIT_EXPORT,
+    PERM_AI_IMPORT, PERM_AI_DECIDE,
 })
 
 # Backwards-compatible aliases for names used in Phase 2 code.
@@ -70,6 +80,7 @@ ROLE_PERMISSIONS: Dict[str, FrozenSet[str]] = {
         PERM_FINDING_VIEW,
         PERM_FINDING_ASSIGN,
         PERM_AUDIT_EXPORT,
+        PERM_AI_IMPORT,
     }),
     "executive": frozenset({
         PERM_FINDING_VIEW,
@@ -79,15 +90,18 @@ ROLE_PERMISSIONS: Dict[str, FrozenSet[str]] = {
         PERM_ATTESTATION_REVOKE,
         PERM_RISK_ACCEPT,
         PERM_AUDIT_EXPORT,
+        PERM_AI_DECIDE,
     }),
     "engineer": frozenset({
         PERM_FINDING_VIEW,
         PERM_FINDING_REMEDIATE,
+        PERM_AI_IMPORT,
     }),
     "msp_technician": frozenset({
         PERM_FINDING_VIEW,
         PERM_FINDING_ASSIGN,
         PERM_FINDING_REMEDIATE,
+        PERM_AI_IMPORT,
     }),
     "auditor": frozenset({
         PERM_FINDING_VIEW,

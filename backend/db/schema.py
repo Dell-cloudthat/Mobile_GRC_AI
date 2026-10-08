@@ -13,6 +13,7 @@ tables:
 
 from sqlalchemy import (
     BigInteger,
+    Boolean,
     Column,
     DateTime,
     ForeignKey,
@@ -175,4 +176,41 @@ audit_log = Table(
     Index("ix_audit_log_chain", "chain_key", "seq"),
 )
 
-APPEND_ONLY_TABLES = ("finding_events", "attestations", "attestation_revocations", "audit_log")
+# ── Shadow AI (v1, migration 0002) ────────────────────────────────────────────
+
+ai_app_observations = Table(
+    "ai_app_observations", metadata,
+    Column("org_id", String(64), ForeignKey("organizations.org_id"), nullable=False),
+    Column("app_key", String(128), nullable=False),
+    Column("display_name", String(200), nullable=False),
+    Column("listed", Boolean, nullable=False),
+    Column("sources", ARRAY(String(32)), nullable=False),
+    Column("users", JSONB, nullable=False, server_default="[]"),
+    Column("reported_user_count", Integer, nullable=False, server_default="0"),
+    Column("scopes", ARRAY(String(128)), nullable=False),
+    Column("consent_types", ARRAY(String(32)), nullable=False),
+    Column("domains", ARRAY(String(200)), nullable=False),
+    Column("raw_names", ARRAY(String(200)), nullable=False),
+    Column("first_seen", TS, nullable=False),
+    Column("last_seen", TS, nullable=False),
+    Column("updated_at", TS, nullable=False),
+    PrimaryKeyConstraint("org_id", "app_key"),
+)
+
+ai_app_decisions = Table(
+    "ai_app_decisions", metadata,
+    Column("seq", BigInteger, primary_key=True, autoincrement=True),
+    Column("decision_id", String(64), nullable=False, unique=True),
+    Column("org_id", String(64), ForeignKey("organizations.org_id"), nullable=False),
+    Column("app_key", String(128), nullable=False),
+    Column("decision", String(32), nullable=False),
+    Column("note", Text),
+    Column("expires_at", TS),
+    Column("decided_by_user_id", String(255), nullable=False),
+    Column("decided_by_name", String(200), nullable=False),
+    Column("decided_at", TS, nullable=False),
+    Index("ix_ai_app_decisions_org", "org_id", "seq"),
+)
+
+APPEND_ONLY_TABLES = ("finding_events", "attestations", "attestation_revocations", "audit_log",
+                      "ai_app_decisions")

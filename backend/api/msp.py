@@ -44,6 +44,7 @@ from backend.auth.permissions import (
 )
 from backend.controls.state import effective_statuses
 from backend.repositories import control_state_repo
+from backend.repositories.ai_usage_repo import ai_usage_repo
 from backend.repositories.audit_repo import audit_repo
 from backend.repositories.finding_repo import finding_repo
 from backend.repositories.invite_repo import invite_repo
@@ -295,6 +296,7 @@ def delete_managed_org(
     invite_repo.remove_org(org_id)
     finding_repo.remove_org(org_id)
     control_state_repo.remove_org(org_id)
+    ai_usage_repo.remove_org(org_id)
     org_repo.delete(org_id)
 
 

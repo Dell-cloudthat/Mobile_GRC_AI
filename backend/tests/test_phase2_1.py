@@ -141,6 +141,18 @@ def _probe(client, m, permission, token):
     if permission == "audit.export":
         return client.get(f"{API}/organizations/{org}/audit", headers=auth(token)).status_code
 
+    if permission == "ai.import":
+        return client.post(f"{API}/organizations/{org}/ai-apps/import",
+                           json={"csv_text": "App,User\nChatGPT,probe@example.com\n"},
+                           headers=auth(token)).status_code
+
+    if permission == "ai.decide":
+        r = client.post(f"{API}/organizations/{org}/ai-apps/import",
+                        json={"csv_text": "App,User\nPerplexity,helper@example.com\n"}, headers=auth(eng))
+        assert r.status_code == 200, r.text
+        return client.post(f"{API}/organizations/{org}/ai-apps/perplexity/decision",
+                           json={"decision": "under_review"}, headers=auth(token)).status_code
+
     if permission == "billing.manage":
         pytest.skip("No billing endpoint yet — covered by the ROLE_PERMISSIONS table only")
 
