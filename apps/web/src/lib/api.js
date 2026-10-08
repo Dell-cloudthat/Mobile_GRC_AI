@@ -65,6 +65,15 @@ export const api = {
 
   // Audit
   auditVerify: orgId => request('GET', `${org(orgId)}/audit/verify`),
+
+  // Shadow AI
+  aiApps: orgId => request('GET', `${org(orgId)}/ai-apps`),
+  aiApp: (orgId, appKey) => request('GET', `${org(orgId)}/ai-apps/${encodeURIComponent(appKey)}`),
+  importAiApps: (orgId, csvText, filename) =>
+    request('POST', `${org(orgId)}/ai-apps/import`, { csv_text: csvText, filename }),
+  decideAiApp: (orgId, appKey, body) =>
+    request('POST', `${org(orgId)}/ai-apps/${encodeURIComponent(appKey)}/decision`, body),
+  mspAiUsage: mspId => request('GET', `/msp/${encodeURIComponent(mspId)}/ai-usage`),
 };
 
 // ── Profile field mapping (API snake_case ↔ app camelCase) ────────────────────

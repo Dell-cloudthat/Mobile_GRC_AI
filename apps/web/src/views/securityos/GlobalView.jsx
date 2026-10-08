@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useApp, ScoreRing } from '../../SecurityOSApp';
 import { calculateScore, toGrade, toColor } from '../../data/scoring';
 import { STATUS, SEVERITY_DOT } from '../../data/controls';
+import { AiPortfolioCard } from './ai/AiCards';
 import { Building2, ChevronDown, ChevronRight, ChevronUp, Globe, Plus } from 'lucide-react';
 
 const COLOR_TEXT = {
@@ -101,6 +102,7 @@ export default function GlobalView() {
       </div>
 
       <div className="flex-1 overflow-y-auto">
+        <AiPortfolioCard />
         {/* Global score */}
         <div className="px-5 pt-6 pb-5 border-b border-slate-800">
           <div className="flex items-center gap-4">

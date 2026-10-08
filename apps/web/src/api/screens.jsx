@@ -130,17 +130,26 @@ export function CreateOrgConfirm({ profile, me, onBack, onCreate, toasts = null 
         <p className="text-white font-semibold">{profile.businessName || 'My Business'}</p>
         <p className="text-xs text-slate-400">{[profile.industry, profile.employeeCount && `${profile.employeeCount} employees`].filter(Boolean).join(' · ')}</p>
       </div>
-      <p className="text-sm text-slate-300 mb-3">You'll be the <span className="font-semibold text-white">admin</span>: you manage the team and settings.</p>
-      <label className="flex items-start gap-3 bg-slate-900 border border-slate-800 rounded-xl p-3 mb-5 cursor-pointer">
-        <input type="checkbox" className="mt-1 accent-indigo-500" checked={alsoExecutive} onChange={e => setAlsoExecutive(e.target.checked)} />
-        <span className="text-sm">
-          <span className="text-white font-medium">I also sign off on security for this business</span>
-          <span className="block text-xs text-slate-400 mt-0.5">
-            Adds the executive role: approve fixes and attest controls. Typical when the owner runs IT.
-            You can never approve a fix you did yourself.
-          </span>
-        </span>
-      </label>
+      {me?.msp_id ? (
+        <p className="text-sm text-slate-300 mb-5">
+          This client will be managed by your MSP (<span className="text-white">{me.msp_id}</span>). You'll be its admin and
+          MSP technician. Invite someone at the business as executive to approve fixes and AI tools.
+        </p>
+      ) : (
+        <>
+          <p className="text-sm text-slate-300 mb-3">You'll be the <span className="font-semibold text-white">admin</span>: you manage the team and settings.</p>
+          <label className="flex items-start gap-3 bg-slate-900 border border-slate-800 rounded-xl p-3 mb-5 cursor-pointer">
+            <input type="checkbox" className="mt-1 accent-indigo-500" checked={alsoExecutive} onChange={e => setAlsoExecutive(e.target.checked)} />
+            <span className="text-sm">
+              <span className="text-white font-medium">I also sign off on security for this business</span>
+              <span className="block text-xs text-slate-400 mt-0.5">
+                Adds the executive role: approve fixes and attest controls. Typical when the owner runs IT.
+                You can never approve a fix you did yourself.
+              </span>
+            </span>
+          </label>
+        </>
+      )}
       <button disabled={busy} onClick={async () => { setBusy(true); try { await onCreate({ alsoExecutive }); } finally { setBusy(false); } }}
               className="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-sm font-semibold">
         {busy ? 'Creating…' : 'Create organization'}

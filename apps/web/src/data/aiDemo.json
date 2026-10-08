@@ -1,0 +1,3914 @@
+{
+ "business_risk": {
+  "canva_ai": {
+   "factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds the content of decks and documents, often shared by public link",
+     "points": 6
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Teams / Enterprise",
+   "score": 6,
+   "top_factors": [
+    "Holds the content of decks and documents, often shared by public link"
+   ]
+  },
+  "chatgpt": {
+   "factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds whatever people paste in: emails, documents, customer details",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "breadth",
+     "label": "Used by 10 people",
+     "points": 5
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Business / Enterprise",
+   "score": 13,
+   "top_factors": [
+    "Holds whatever people paste in: emails, documents, customer details",
+    "Used by 10 people"
+   ]
+  },
+  "claude": {
+   "factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds whatever people paste in: emails, documents, customer details",
+     "points": 8
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Team / Enterprise",
+   "score": 8,
+   "top_factors": [
+    "Holds whatever people paste in: emails, documents, customer details"
+   ]
+  },
+  "cursor": {
+   "factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Sees source code, which can include secrets and customer data",
+     "points": 10
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Teams / Enterprise (privacy mode enforced)",
+   "score": 10,
+   "top_factors": [
+    "Sees source code, which can include secrets and customer data"
+   ]
+  },
+  "fireflies": {
+   "factors": [
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_meetings",
+     "label": "Can read calendars and join or transcribe meetings",
+     "points": 12
+    },
+    {
+     "detail": null,
+     "key": "auto_joins_meetings",
+     "label": "Joins meetings automatically and spreads to attendees",
+     "points": 5
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Business / Enterprise",
+   "score": 20,
+   "top_factors": [
+    "Can read calendars and join or transcribe meetings",
+    "Joins meetings automatically and spreads to attendees",
+    "Keeps access even when the user isn't signed in"
+   ]
+  },
+  "gamma": {
+   "factors": [
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Team / Business plan)",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": null,
+     "key": "soc2_unknown",
+     "label": "SOC 2 report not confirmed",
+     "points": 6
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds the content of decks and documents, often shared by public link",
+     "points": 6
+    }
+   ],
+   "level": "medium",
+   "plan_assumed": "business",
+   "plan_label": "Team / Business",
+   "score": 34,
+   "top_factors": [
+    "Not confirmed whether it trains on your data (Team / Business plan)",
+    "Your business handles patient health information (HIPAA)",
+    "SOC 2 report not confirmed"
+   ]
+  },
+  "grammarly": {
+   "factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Reads the text people type, often everywhere they type through a browser extension",
+     "points": 8
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Business / Enterprise",
+   "score": 8,
+   "top_factors": [
+    "Reads the text people type, often everywhere they type through a browser extension"
+   ]
+  },
+  "heygen": {
+   "factors": [
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Team / Enterprise plan)",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": null,
+     "key": "soc2_unknown",
+     "label": "SOC 2 report not confirmed",
+     "points": 6
+    },
+    {
+     "detail": "A cloned executive voice is a known fraud tool.",
+     "key": "cloning",
+     "label": "Can clone voices or likenesses",
+     "points": 5
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Mostly prompts and uploaded images; low data exposure unless people upload sensitive files",
+     "points": 3
+    }
+   ],
+   "level": "medium",
+   "plan_assumed": "business",
+   "plan_label": "Team / Enterprise",
+   "score": 36,
+   "top_factors": [
+    "Not confirmed whether it trains on your data (Team / Enterprise plan)",
+    "Your business handles patient health information (HIPAA)",
+    "SOC 2 report not confirmed"
+   ]
+  },
+  "microsoft_copilot": {
+   "factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds whatever people paste in: emails, documents, customer details",
+     "points": 8
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Microsoft 365 work account",
+   "score": 8,
+   "top_factors": [
+    "Holds whatever people paste in: emails, documents, customer details"
+   ]
+  },
+  "otter": {
+   "factors": [
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Business / Enterprise plan)",
+     "points": 12
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_meetings",
+     "label": "Can read calendars and join or transcribe meetings",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": null,
+     "key": "auto_joins_meetings",
+     "label": "Joins meetings automatically and spreads to attendees",
+     "points": 5
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "level": "medium",
+   "plan_assumed": "business",
+   "plan_label": "Business / Enterprise",
+   "score": 42,
+   "top_factors": [
+    "Not confirmed whether it trains on your data (Business / Enterprise plan)",
+    "Can read calendars and join or transcribe meetings",
+    "Your business handles patient health information (HIPAA)"
+   ]
+  },
+  "perplexity": {
+   "factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds research questions and any documents people upload",
+     "points": 6
+    }
+   ],
+   "level": "low",
+   "plan_assumed": "business",
+   "plan_label": "Enterprise Pro",
+   "score": 6,
+   "top_factors": [
+    "Holds research questions and any documents people upload"
+   ]
+  },
+  "read_ai": {
+   "factors": [
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_mail",
+     "label": "Can read or send email from users' mailboxes",
+     "points": 20
+    },
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Enterprise plan)",
+     "points": 12
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_meetings",
+     "label": "Can read calendars and join or transcribe meetings",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": null,
+     "key": "soc2_unknown",
+     "label": "SOC 2 report not confirmed",
+     "points": 6
+    },
+    {
+     "detail": null,
+     "key": "auto_joins_meetings",
+     "label": "Joins meetings automatically and spreads to attendees",
+     "points": 5
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "level": "high",
+   "plan_assumed": "business",
+   "plan_label": "Enterprise",
+   "score": 68,
+   "top_factors": [
+    "Can read or send email from users' mailboxes",
+    "Not confirmed whether it trains on your data (Enterprise plan)",
+    "Can read calendars and join or transcribe meetings"
+   ]
+  },
+  "zapier": {
+   "factors": [
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_org_wide",
+     "label": "Can read data across the whole organization (files.readwrite.all)",
+     "points": 25
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_mail",
+     "label": "Can read or send email from users' mailboxes",
+     "points": 20
+    },
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Team / Enterprise plan)",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": null,
+     "key": "holds_credentials",
+     "label": "Stores logins to your other business systems",
+     "points": 6
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "level": "critical",
+   "plan_assumed": "business",
+   "plan_label": "Team / Enterprise",
+   "score": 76,
+   "top_factors": [
+    "Can read data across the whole organization (files.readwrite.all)",
+    "Can read or send email from users' mailboxes",
+    "Not confirmed whether it trains on your data (Team / Enterprise plan)"
+   ]
+  }
+ },
+ "details": {
+  "canva_ai": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "canva_ai",
+     "name": "Canva AI Teams / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    }
+   ],
+   "app": {
+    "category": "presentation_design",
+    "category_label": "AI presentations & design",
+    "common_uses": [
+     "Social graphics",
+     "Presentations",
+     "AI image generation"
+    ],
+    "flags": [],
+    "hq_country": "AU",
+    "id": "canva_ai",
+    "name": "Canva AI",
+    "notes": null,
+    "soc2": true,
+    "summary": "Design platform with AI image, writing and presentation features.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Teams / Enterprise",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Pro",
+      "trains_on_inputs": "no"
+     }
+    },
+    "vendor": "Canva",
+    "website": "https://www.canva.com"
+   },
+   "app_key": "canva_ai",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "presentation_design",
+   "category_label": "AI presentations & design",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Marketing",
+     "users": 3
+    },
+    {
+     "department": "Executive",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Canva"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-03T09:15:00+00:00",
+   "last_seen": "2026-10-06T11:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Marketing",
+      "reason": "Designing presentations and one-pagers",
+      "users": 3
+     },
+     {
+      "department": "Executive",
+      "reason": "Board and investor decks",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: designing presentations and one-pagers (3 of 4 users are in Marketing)",
+    "underlying_need": "Decks and designs without a designer"
+   },
+   "listed": true,
+   "msp_opportunity": "Approve one business-plan design tool with sharing restricted to the company.",
+   "name": "Canva AI",
+   "recommended_action": {
+    "action": "approve",
+    "detail": "Low risk. Add it to the approved-tools list.",
+    "label": "Approve"
+   },
+   "risk": {
+    "level": "low",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Pro",
+    "score": 14,
+    "top_factors": [
+     "No company admin controls",
+     "Holds the content of decks and documents, often shared by public link"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds the content of decks and documents, often shared by public link",
+     "points": 6
+    }
+   ],
+   "risk_if_business": {
+    "level": "low",
+    "plan_label": "Teams / Enterprise",
+    "score": 6
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 4,
+   "users": [
+    {
+     "department": "Executive",
+     "user": "diana.fox@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "lily.chen@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "omar.haddad@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "sara.kim@riversidehealth.example"
+    }
+   ],
+   "vendor": "Canva"
+  },
+  "chatgpt": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "chatgpt",
+     "name": "ChatGPT Business / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "gemini",
+     "name": "Gemini Google Workspace",
+     "why": "Google's AI assistant, available as a consumer app and inside Google Workspace."
+    }
+   ],
+   "app": {
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "common_uses": [
+     "Drafting emails and documents",
+     "Summarizing files and meetings",
+     "Analyzing spreadsheets",
+     "Coding help"
+    ],
+    "flags": [],
+    "hq_country": "US",
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "notes": null,
+    "soc2": true,
+    "summary": "General-purpose AI assistant for writing, analysis, coding and file Q&A.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Business / Enterprise",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Plus / Pro",
+      "trains_on_inputs": "opt_out"
+     }
+    },
+    "vendor": "OpenAI",
+    "website": "https://openai.com/chatgpt"
+   },
+   "app_key": "chatgpt",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "general_assistant",
+   "category_label": "AI chat assistant",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Sales",
+     "users": 3
+    },
+    {
+     "department": "Marketing",
+     "users": 2
+    },
+    {
+     "department": "Executive",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "ChatGPT"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-01T09:15:00+00:00",
+   "last_seen": "2026-10-07T16:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Sales",
+      "reason": "Writing prospecting emails and proposals, researching accounts before calls",
+      "users": 3
+     },
+     {
+      "department": "Marketing",
+      "reason": "Drafting blog posts, social copy and campaign ideas",
+      "users": 2
+     },
+     {
+      "department": "Executive",
+      "reason": "Summarizing reports and drafting board or investor updates",
+      "users": 1
+     },
+     {
+      "department": "Clinical",
+      "reason": "Summarizing notes and drafting patient letters",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: writing prospecting emails and proposals, researching accounts before calls (3 of 10 users are in Sales)",
+    "underlying_need": "Faster drafting, summarizing and answering questions"
+   },
+   "listed": true,
+   "msp_opportunity": "Roll out a business AI assistant with sign-in, admin controls and an AI acceptable-use policy; migrate personal-account users onto it.",
+   "name": "ChatGPT",
+   "recommended_action": {
+    "action": "move_to_business",
+    "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+    "label": "Move users to a business plan"
+   },
+   "risk": {
+    "level": "high",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Plus / Pro",
+    "score": 51,
+    "top_factors": [
+     "Trains on your data unless each person opts out (Free / Plus / Pro plan)",
+     "Your business handles patient health information (HIPAA)",
+     "No company admin controls"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Opt-out is per person and can't be enforced centrally on this plan.",
+     "key": "trains_opt_out",
+     "label": "Trains on your data unless each person opts out (Free / Plus / Pro plan)",
+     "points": 20
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds whatever people paste in: emails, documents, customer details",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "breadth",
+     "label": "Used by 10 people",
+     "points": 5
+    }
+   ],
+   "risk_if_business": {
+    "level": "low",
+    "plan_label": "Business / Enterprise",
+    "score": 13
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 10,
+   "users": [
+    {
+     "department": "Executive",
+     "user": "chris.owen@riversidehealth.example"
+    },
+    {
+     "department": "Sales",
+     "user": "dev.patel@riversidehealth.example"
+    },
+    {
+     "department": "Clinical",
+     "user": "dr.emily.shaw@riversidehealth.example"
+    },
+    {
+     "department": "Customer Support",
+     "user": "ivy.hall@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "lily.chen@riversidehealth.example"
+    },
+    {
+     "department": "Sales",
+     "user": "maria.lopez@riversidehealth.example"
+    },
+    {
+     "department": "HR",
+     "user": "nina.rossi@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "omar.haddad@riversidehealth.example"
+    },
+    {
+     "department": "Finance",
+     "user": "raj.iyer@riversidehealth.example"
+    },
+    {
+     "department": "Sales",
+     "user": "tom.nguyen@riversidehealth.example"
+    }
+   ],
+   "vendor": "OpenAI"
+  },
+  "claude": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "claude",
+     "name": "Claude Team / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "gemini",
+     "name": "Gemini Google Workspace",
+     "why": "Google's AI assistant, available as a consumer app and inside Google Workspace."
+    }
+   ],
+   "app": {
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "common_uses": [
+     "Long-document analysis",
+     "Drafting and editing",
+     "Coding help",
+     "Research"
+    ],
+    "flags": [],
+    "hq_country": "US",
+    "id": "claude",
+    "name": "Claude",
+    "notes": null,
+    "soc2": true,
+    "summary": "General-purpose AI assistant for writing, analysis, research and coding.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Team / Enterprise",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Pro / Max",
+      "trains_on_inputs": "opt_out"
+     }
+    },
+    "vendor": "Anthropic",
+    "website": "https://claude.ai"
+   },
+   "app_key": "claude",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "general_assistant",
+   "category_label": "AI chat assistant",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Finance",
+     "users": 1
+    },
+    {
+     "department": "Engineering",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Claude"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-04T18:15:00+00:00",
+   "last_seen": "2026-10-05T14:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Finance",
+      "reason": "Building spreadsheet formulas and summarizing financial documents",
+      "users": 1
+     },
+     {
+      "department": "Engineering",
+      "reason": "Debugging errors, writing scripts and explaining code",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: building spreadsheet formulas and summarizing financial documents (1 of 2 users are in Finance)",
+    "underlying_need": "Faster drafting, summarizing and answering questions"
+   },
+   "listed": true,
+   "msp_opportunity": "Roll out a business AI assistant with sign-in, admin controls and an AI acceptable-use policy; migrate personal-account users onto it.",
+   "name": "Claude",
+   "recommended_action": {
+    "action": "review",
+    "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+    "label": "Approve with conditions or move to business plan"
+   },
+   "risk": {
+    "level": "medium",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Pro / Max",
+    "score": 46,
+    "top_factors": [
+     "Trains on your data unless each person opts out (Free / Pro / Max plan)",
+     "Your business handles patient health information (HIPAA)",
+     "No company admin controls"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Opt-out is per person and can't be enforced centrally on this plan.",
+     "key": "trains_opt_out",
+     "label": "Trains on your data unless each person opts out (Free / Pro / Max plan)",
+     "points": 20
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds whatever people paste in: emails, documents, customer details",
+     "points": 8
+    }
+   ],
+   "risk_if_business": {
+    "level": "low",
+    "plan_label": "Team / Enterprise",
+    "score": 8
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 2,
+   "users": [
+    {
+     "department": "Finance",
+     "user": "raj.iyer@riversidehealth.example"
+    },
+    {
+     "department": "Engineering",
+     "user": "sam.ortiz@riversidehealth.example"
+    }
+   ],
+   "vendor": "Anthropic"
+  },
+  "cursor": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": false,
+     "app_id": "cursor",
+     "name": "Cursor Teams / Enterprise (privacy mode enforced)",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "github_copilot",
+     "name": "GitHub Copilot Business / Enterprise",
+     "why": "AI pair programmer in code editors and on GitHub."
+    }
+   ],
+   "app": {
+    "category": "coding_assistant",
+    "category_label": "AI coding assistant",
+    "common_uses": [
+     "Writing and refactoring code",
+     "Codebase Q&A",
+     "Agentic coding"
+    ],
+    "flags": [],
+    "hq_country": "US",
+    "id": "cursor",
+    "name": "Cursor",
+    "notes": null,
+    "soc2": true,
+    "summary": "AI code editor that can read and change a whole codebase.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Teams / Enterprise (privacy mode enforced)",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Hobby / Pro (privacy mode optional)",
+      "trains_on_inputs": "opt_out"
+     }
+    },
+    "vendor": "Anysphere",
+    "website": "https://cursor.com"
+   },
+   "app_key": "cursor",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "coding_assistant",
+   "category_label": "AI coding assistant",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Engineering",
+     "users": 2
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Cursor"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-03T11:15:00+00:00",
+   "last_seen": "2026-10-04T13:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Engineering",
+      "reason": "Autocompleting code, writing tests and refactoring",
+      "users": 2
+     }
+    ],
+    "headline": "Most likely: autocompleting code, writing tests and refactoring (2 of 2 users are in Engineering)",
+    "underlying_need": "Writing and fixing code faster"
+   },
+   "listed": true,
+   "msp_opportunity": "Provide a business plan with code-privacy settings enforced and secret scanning on repositories.",
+   "name": "Cursor",
+   "recommended_action": {
+    "action": "review",
+    "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+    "label": "Approve with conditions or move to business plan"
+   },
+   "risk": {
+    "level": "medium",
+    "plan_assumed": "consumer",
+    "plan_label": "Hobby / Pro (privacy mode optional)",
+    "score": 48,
+    "top_factors": [
+     "Trains on your data unless each person opts out (Hobby / Pro (privacy mode optional) plan)",
+     "Sees source code, which can include secrets and customer data",
+     "Your business handles patient health information (HIPAA)"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Opt-out is per person and can't be enforced centrally on this plan.",
+     "key": "trains_opt_out",
+     "label": "Trains on your data unless each person opts out (Hobby / Pro (privacy mode optional) plan)",
+     "points": 20
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Sees source code, which can include secrets and customer data",
+     "points": 10
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    }
+   ],
+   "risk_if_business": {
+    "level": "low",
+    "plan_label": "Teams / Enterprise (privacy mode enforced)",
+    "score": 10
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 2,
+   "users": [
+    {
+     "department": "Engineering",
+     "user": "alex.ruiz@riversidehealth.example"
+    },
+    {
+     "department": "Engineering",
+     "user": "sam.ortiz@riversidehealth.example"
+    }
+   ],
+   "vendor": "Anysphere"
+  },
+  "deepseek": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "gemini",
+     "name": "Gemini Google Workspace",
+     "why": "Google's AI assistant, available as a consumer app and inside Google Workspace."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "chatgpt",
+     "name": "ChatGPT Business / Enterprise",
+     "why": "General-purpose AI assistant for writing, analysis, coding and file Q&A."
+    }
+   ],
+   "app": {
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "common_uses": [
+     "General chat and coding help",
+     "Trying a free alternative to ChatGPT"
+    ],
+    "flags": [
+     "data_in_restricted_jurisdiction"
+    ],
+    "hq_country": "CN",
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "notes": "Several governments and agencies have restricted its use on official devices.",
+    "soc2": false,
+    "summary": "Chinese AI assistant. Its privacy policy states user data is stored on servers in the People's Republic of China.",
+    "tiers": {
+     "business": null,
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free app",
+      "trains_on_inputs": "yes"
+     }
+    },
+    "vendor": "DeepSeek (Hangzhou DeepSeek AI)",
+    "website": "https://www.deepseek.com"
+   },
+   "app_key": "deepseek",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "general_assistant",
+   "category_label": "AI chat assistant",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Clinical",
+     "users": 2
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [],
+    "domains": [
+     "chat.deepseek.com"
+    ],
+    "raw_names": [],
+    "scopes": []
+   },
+   "first_seen": "2026-10-04T13:15:00+00:00",
+   "last_seen": "2026-10-06T15:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Clinical",
+      "reason": "Summarizing notes and drafting patient letters",
+      "users": 2
+     }
+    ],
+    "headline": "Most likely: summarizing notes and drafting patient letters (2 of 2 users are in Clinical)",
+    "underlying_need": "Faster drafting, summarizing and answering questions"
+   },
+   "listed": true,
+   "msp_opportunity": "Roll out a business AI assistant with sign-in, admin controls and an AI acceptable-use policy; migrate personal-account users onto it.",
+   "name": "DeepSeek",
+   "recommended_action": {
+    "action": "block",
+    "detail": "Revoke access, tell the users why, and point them to an approved tool.",
+    "label": "Block and offer an alternative"
+   },
+   "risk": {
+    "level": "critical",
+    "plan_assumed": "consumer",
+    "plan_label": "Free app",
+    "score": 96,
+    "top_factors": [
+     "Data held in China",
+     "Uses your data to train AI models (Free app plan)",
+     "No SOC 2 report"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Subject to that country's data access laws; often prohibited by government and regulated-industry contracts.",
+     "key": "restricted_jurisdiction",
+     "label": "Data held in China",
+     "points": 30
+    },
+    {
+     "detail": "What employees type or upload can become training data for the vendor's models.",
+     "key": "trains_yes",
+     "label": "Uses your data to train AI models (Free app plan)",
+     "points": 25
+    },
+    {
+     "detail": null,
+     "key": "no_soc2",
+     "label": "No SOC 2 report",
+     "points": 10
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds whatever people paste in: emails, documents, customer details",
+     "points": 8
+    },
+    {
+     "detail": "There is no version with company controls to move people onto.",
+     "key": "no_business_plan",
+     "label": "No business plan available",
+     "points": 5
+    }
+   ],
+   "risk_if_business": null,
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 2,
+   "users": [
+    {
+     "department": "Clinical",
+     "user": "kate.morgan@riversidehealth.example"
+    },
+    {
+     "department": "Clinical",
+     "user": "liam.brooks@riversidehealth.example"
+    }
+   ],
+   "vendor": "DeepSeek (Hangzhou DeepSeek AI)"
+  },
+  "fireflies": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "fireflies",
+     "name": "Fireflies.ai Business / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    }
+   ],
+   "app": {
+    "category": "meeting_assistant",
+    "category_label": "Meeting recorder & notetaker",
+    "common_uses": [
+     "Recording sales calls",
+     "CRM note sync",
+     "Meeting search"
+    ],
+    "flags": [
+     "auto_joins_meetings"
+    ],
+    "hq_country": "US",
+    "id": "fireflies",
+    "name": "Fireflies.ai",
+    "notes": null,
+    "soc2": true,
+    "summary": "AI notetaker that joins meetings, transcribes and syncs notes to CRMs.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Business / Enterprise",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Pro",
+      "trains_on_inputs": "no"
+     }
+    },
+    "vendor": "Fireflies.ai",
+    "website": "https://fireflies.ai"
+   },
+   "app_key": "fireflies",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "meeting_assistant",
+   "category_label": "Meeting recorder & notetaker",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Sales",
+     "users": 2
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Fireflies.ai Notetaker"
+    ],
+    "scopes": [
+     "Calendars.Read",
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-02T09:15:00+00:00",
+   "last_seen": "2026-10-07T18:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Sales",
+      "reason": "Recording customer calls and pushing notes into the CRM",
+      "users": 2
+     }
+    ],
+    "headline": "Most likely: recording customer calls and pushing notes into the CRM (2 of 2 users are in Sales)",
+    "underlying_need": "Meeting notes and follow-ups without manual typing"
+   },
+   "listed": true,
+   "msp_opportunity": "Standardize on one approved notetaker (Teams Premium / Copilot, Google Meet notes, or one vetted vendor), remove the rest, and set a recording-consent policy.",
+   "name": "Fireflies.ai",
+   "recommended_action": {
+    "action": "approve",
+    "detail": "Low risk. Add it to the approved-tools list.",
+    "label": "Approve"
+   },
+   "risk": {
+    "level": "low",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Pro",
+    "score": 28,
+    "top_factors": [
+     "Can read calendars and join or transcribe meetings",
+     "No company admin controls",
+     "Joins meetings automatically and spreads to attendees"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_meetings",
+     "label": "Can read calendars and join or transcribe meetings",
+     "points": 12
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "auto_joins_meetings",
+     "label": "Joins meetings automatically and spreads to attendees",
+     "points": 5
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "risk_if_business": {
+    "level": "low",
+    "plan_label": "Business / Enterprise",
+    "score": 20
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 2,
+   "users": [
+    {
+     "department": "Sales",
+     "user": "dev.patel@riversidehealth.example"
+    },
+    {
+     "department": "Sales",
+     "user": "tom.nguyen@riversidehealth.example"
+    }
+   ],
+   "vendor": "Fireflies.ai"
+  },
+  "gamma": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "gamma",
+     "name": "Gamma Team / Business",
+     "why": "Same tool on the business plan: company sign-in and admin controls; confirm its data terms."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "canva_ai",
+     "name": "Canva AI Teams / Enterprise",
+     "why": "Design platform with AI image, writing and presentation features."
+    }
+   ],
+   "app": {
+    "category": "presentation_design",
+    "category_label": "AI presentations & design",
+    "common_uses": [
+     "Pitch decks",
+     "Proposals",
+     "One-page sites"
+    ],
+    "flags": [
+     "public_link_sharing"
+    ],
+    "hq_country": "US",
+    "id": "gamma",
+    "name": "Gamma",
+    "notes": null,
+    "soc2": null,
+    "summary": "AI presentation, document and website generator.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Team / Business",
+      "trains_on_inputs": "unknown"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Plus / Pro",
+      "trains_on_inputs": "unknown"
+     }
+    },
+    "vendor": "Gamma Tech",
+    "website": "https://gamma.app"
+   },
+   "app_key": "gamma",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "presentation_design",
+   "category_label": "AI presentations & design",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Executive",
+     "users": 1
+    },
+    {
+     "department": "Sales",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Gamma"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-05T08:15:00+00:00",
+   "last_seen": "2026-10-05T11:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Executive",
+      "reason": "Board and investor decks",
+      "users": 1
+     },
+     {
+      "department": "Sales",
+      "reason": "Building pitch decks and proposals",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: board and investor decks (1 of 2 users are in Executive)",
+    "underlying_need": "Decks and designs without a designer"
+   },
+   "listed": true,
+   "msp_opportunity": "Approve one business-plan design tool with sharing restricted to the company.",
+   "name": "Gamma",
+   "recommended_action": {
+    "action": "review",
+    "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+    "label": "Approve with conditions or move to business plan"
+   },
+   "risk": {
+    "level": "medium",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Plus / Pro",
+    "score": 42,
+    "top_factors": [
+     "Not confirmed whether it trains on your data (Free / Plus / Pro plan)",
+     "Your business handles patient health information (HIPAA)",
+     "No company admin controls"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Free / Plus / Pro plan)",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "soc2_unknown",
+     "label": "SOC 2 report not confirmed",
+     "points": 6
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds the content of decks and documents, often shared by public link",
+     "points": 6
+    }
+   ],
+   "risk_if_business": {
+    "level": "medium",
+    "plan_label": "Team / Business",
+    "score": 34
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 2,
+   "users": [
+    {
+     "department": "Executive",
+     "user": "chris.owen@riversidehealth.example"
+    },
+    {
+     "department": "Sales",
+     "user": "maria.lopez@riversidehealth.example"
+    }
+   ],
+   "vendor": "Gamma Tech"
+  },
+  "grammarly": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "grammarly",
+     "name": "Grammarly Business / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "gemini",
+     "name": "Gemini Google Workspace",
+     "why": "Google's AI assistant, available as a consumer app and inside Google Workspace."
+    }
+   ],
+   "app": {
+    "category": "writing_assistant",
+    "category_label": "Writing & editing assistant",
+    "common_uses": [
+     "Grammar and tone fixes",
+     "Rewriting emails",
+     "AI drafting"
+    ],
+    "flags": [
+     "reads_everywhere_you_type"
+    ],
+    "hq_country": "US",
+    "id": "grammarly",
+    "name": "Grammarly",
+    "notes": null,
+    "soc2": true,
+    "summary": "Writing assistant and browser extension that checks and rewrites text wherever people type.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Business / Enterprise",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Pro",
+      "trains_on_inputs": "unknown"
+     }
+    },
+    "vendor": "Grammarly (Superhuman)",
+    "website": "https://www.grammarly.com"
+   },
+   "app_key": "grammarly",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "writing_assistant",
+   "category_label": "Writing & editing assistant",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Customer Support",
+     "users": 2
+    },
+    {
+     "department": "Marketing",
+     "users": 2
+    },
+    {
+     "department": "Finance",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Grammarly"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-01T17:15:00+00:00",
+   "last_seen": "2026-10-05T10:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Customer Support",
+      "reason": "Making ticket replies sound professional",
+      "users": 2
+     },
+     {
+      "department": "Marketing",
+      "reason": "Producing and editing marketing copy",
+      "users": 2
+     },
+     {
+      "department": "Finance",
+      "reason": "Fixing grammar and rewriting text for tone and clarity",
+      "users": 1
+     },
+     {
+      "department": "HR",
+      "reason": "Editing policies and announcements",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: making ticket replies sound professional (2 of 6 users are in Customer Support)",
+    "underlying_need": "Polished writing with less effort"
+   },
+   "listed": true,
+   "msp_opportunity": "Move to the business plan with admin controls, or the writing features included in Microsoft 365 / Google Workspace.",
+   "name": "Grammarly",
+   "recommended_action": {
+    "action": "review",
+    "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+    "label": "Approve with conditions or move to business plan"
+   },
+   "risk": {
+    "level": "medium",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Pro",
+    "score": 38,
+    "top_factors": [
+     "Not confirmed whether it trains on your data (Free / Pro plan)",
+     "Your business handles patient health information (HIPAA)",
+     "No company admin controls"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Free / Pro plan)",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Reads the text people type, often everywhere they type through a browser extension",
+     "points": 8
+    }
+   ],
+   "risk_if_business": {
+    "level": "low",
+    "plan_label": "Business / Enterprise",
+    "score": 8
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 6,
+   "users": [
+    {
+     "department": "Customer Support",
+     "user": "ivy.hall@riversidehealth.example"
+    },
+    {
+     "department": "Customer Support",
+     "user": "jack.tran@riversidehealth.example"
+    },
+    {
+     "department": "Finance",
+     "user": "jen.wright@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "lily.chen@riversidehealth.example"
+    },
+    {
+     "department": "HR",
+     "user": "nina.rossi@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "sara.kim@riversidehealth.example"
+    }
+   ],
+   "vendor": "Grammarly (Superhuman)"
+  },
+  "heygen": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": false,
+     "app_id": "heygen",
+     "name": "HeyGen Team / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; confirm its data terms."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "synthesia",
+     "name": "Synthesia Enterprise",
+     "why": "AI video platform with avatars, aimed at corporate training."
+    }
+   ],
+   "app": {
+    "category": "image_video",
+    "category_label": "AI image & video generation",
+    "common_uses": [
+     "Personalized sales videos",
+     "Training videos",
+     "Video translation"
+    ],
+    "flags": [
+     "voice_or_likeness_cloning"
+    ],
+    "hq_country": "US",
+    "id": "heygen",
+    "name": "HeyGen",
+    "notes": null,
+    "soc2": null,
+    "summary": "AI video avatars, voice cloning and video translation.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Team / Enterprise",
+      "trains_on_inputs": "unknown"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Creator",
+      "trains_on_inputs": "unknown"
+     }
+    },
+    "vendor": "HeyGen",
+    "website": "https://www.heygen.com"
+   },
+   "app_key": "heygen",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "image_video",
+   "category_label": "AI image & video generation",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Sales",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "HeyGen"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-07T10:15:00+00:00",
+   "last_seen": "2026-10-07T10:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Sales",
+      "reason": "Making personalized video outreach",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: making personalized video outreach (1 of 1 users are in Sales)",
+    "underlying_need": "Creating visuals and videos without a designer"
+   },
+   "listed": true,
+   "msp_opportunity": "Approve one commercially licensed tool and set rules for using AI-generated images in marketing.",
+   "name": "HeyGen",
+   "recommended_action": {
+    "action": "review",
+    "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+    "label": "Approve with conditions or move to business plan"
+   },
+   "risk": {
+    "level": "medium",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Creator",
+    "score": 44,
+    "top_factors": [
+     "Not confirmed whether it trains on your data (Free / Creator plan)",
+     "Your business handles patient health information (HIPAA)",
+     "No company admin controls"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Free / Creator plan)",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "soc2_unknown",
+     "label": "SOC 2 report not confirmed",
+     "points": 6
+    },
+    {
+     "detail": "A cloned executive voice is a known fraud tool.",
+     "key": "cloning",
+     "label": "Can clone voices or likenesses",
+     "points": 5
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Mostly prompts and uploaded images; low data exposure unless people upload sensitive files",
+     "points": 3
+    }
+   ],
+   "risk_if_business": {
+    "level": "medium",
+    "plan_label": "Team / Enterprise",
+    "score": 36
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 1,
+   "users": [
+    {
+     "department": "Sales",
+     "user": "aisha.khan@riversidehealth.example"
+    }
+   ],
+   "vendor": "HeyGen"
+  },
+  "microsoft_copilot": {
+   "admin_consented": true,
+   "alternatives": [
+    {
+     "already_licensed": false,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft Copilot Microsoft 365 work account",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    }
+   ],
+   "app": {
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "common_uses": [
+     "Drafting and summarizing",
+     "Questions about work files (with a Microsoft 365 Copilot license)",
+     "Web research"
+    ],
+    "flags": [
+     "work_account_means_business"
+    ],
+    "hq_country": "US",
+    "id": "microsoft_copilot",
+    "name": "Microsoft Copilot",
+    "notes": null,
+    "soc2": true,
+    "summary": "Microsoft's AI assistant: consumer Copilot on personal accounts, Microsoft 365 Copilot Chat on work accounts.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Microsoft 365 work account",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Personal Microsoft account",
+      "trains_on_inputs": "opt_out"
+     }
+    },
+    "vendor": "Microsoft",
+    "website": "https://copilot.microsoft.com"
+   },
+   "app_key": "microsoft_copilot",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "general_assistant",
+   "category_label": "AI chat assistant",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Operations",
+     "users": 2
+    },
+    {
+     "department": "Engineering",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "AllPrincipals"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Microsoft 365 Copilot"
+    ],
+    "scopes": [
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-01T17:15:00+00:00",
+   "last_seen": "2026-10-06T11:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Operations",
+      "reason": "Writing procedures and summarizing vendor documents",
+      "users": 2
+     },
+     {
+      "department": "Engineering",
+      "reason": "Debugging errors, writing scripts and explaining code",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: writing procedures and summarizing vendor documents (2 of 3 users are in Operations)",
+    "underlying_need": "Faster drafting, summarizing and answering questions"
+   },
+   "listed": true,
+   "msp_opportunity": "Roll out a business AI assistant with sign-in, admin controls and an AI acceptable-use policy; migrate personal-account users onto it.",
+   "name": "Microsoft Copilot",
+   "recommended_action": {
+    "action": "approve",
+    "detail": "Low risk. Add it to the approved-tools list.",
+    "label": "Approve"
+   },
+   "risk": {
+    "level": "low",
+    "plan_assumed": "business",
+    "plan_label": "Microsoft 365 work account",
+    "score": 8,
+    "top_factors": [
+     "Holds whatever people paste in: emails, documents, customer details"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds whatever people paste in: emails, documents, customer details",
+     "points": 8
+    }
+   ],
+   "risk_if_business": null,
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 3,
+   "users": [
+    {
+     "department": "Engineering",
+     "user": "alex.ruiz@riversidehealth.example"
+    },
+    {
+     "department": "Operations",
+     "user": "grace.lee@riversidehealth.example"
+    },
+    {
+     "department": "Operations",
+     "user": "henry.cole@riversidehealth.example"
+    }
+   ],
+   "vendor": "Microsoft"
+  },
+  "otter": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "otter",
+     "name": "Otter.ai Business / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; confirm its data terms."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "fireflies",
+     "name": "Fireflies.ai Business / Enterprise",
+     "why": "AI notetaker that joins meetings, transcribes and syncs notes to CRMs."
+    }
+   ],
+   "app": {
+    "category": "meeting_assistant",
+    "category_label": "Meeting recorder & notetaker",
+    "common_uses": [
+     "Transcribing meetings",
+     "Automatic meeting summaries",
+     "Searchable call archive"
+    ],
+    "flags": [
+     "auto_joins_meetings"
+    ],
+    "hq_country": "US",
+    "id": "otter",
+    "name": "Otter.ai",
+    "notes": "Its privacy policy describes training on de-identified recordings.",
+    "soc2": true,
+    "summary": "Meeting transcription and AI notes; can join calendar meetings automatically.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Business / Enterprise",
+      "trains_on_inputs": "unknown"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Basic / Pro",
+      "trains_on_inputs": "yes"
+     }
+    },
+    "vendor": "Otter.ai",
+    "website": "https://otter.ai"
+   },
+   "app_key": "otter",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "meeting_assistant",
+   "category_label": "Meeting recorder & notetaker",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Sales",
+     "users": 3
+    },
+    {
+     "department": "Executive",
+     "users": 1
+    },
+    {
+     "department": "Clinical",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Otter.ai"
+    ],
+    "scopes": [
+     "Calendars.Read",
+     "OnlineMeetings.Read",
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-01T11:15:00+00:00",
+   "last_seen": "2026-10-07T17:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Sales",
+      "reason": "Recording customer calls and pushing notes into the CRM",
+      "users": 3
+     },
+     {
+      "department": "Executive",
+      "reason": "Getting summaries of meetings they couldn't attend",
+      "users": 1
+     },
+     {
+      "department": "Clinical",
+      "reason": "Transcribing patient-related conversations",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: recording customer calls and pushing notes into the CRM (3 of 5 users are in Sales)",
+    "underlying_need": "Meeting notes and follow-ups without manual typing"
+   },
+   "listed": true,
+   "msp_opportunity": "Standardize on one approved notetaker (Teams Premium / Copilot, Google Meet notes, or one vetted vendor), remove the rest, and set a recording-consent policy.",
+   "name": "Otter.ai",
+   "recommended_action": {
+    "action": "move_to_business",
+    "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+    "label": "Move users to a business plan"
+   },
+   "risk": {
+    "level": "high",
+    "plan_assumed": "consumer",
+    "plan_label": "Basic / Pro",
+    "score": 63,
+    "top_factors": [
+     "Uses your data to train AI models (Basic / Pro plan)",
+     "Can read calendars and join or transcribe meetings",
+     "Your business handles patient health information (HIPAA)"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "What employees type or upload can become training data for the vendor's models.",
+     "key": "trains_yes",
+     "label": "Uses your data to train AI models (Basic / Pro plan)",
+     "points": 25
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_meetings",
+     "label": "Can read calendars and join or transcribe meetings",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "auto_joins_meetings",
+     "label": "Joins meetings automatically and spreads to attendees",
+     "points": 5
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "risk_if_business": {
+    "level": "medium",
+    "plan_label": "Business / Enterprise",
+    "score": 42
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 5,
+   "users": [
+    {
+     "department": "Sales",
+     "user": "aisha.khan@riversidehealth.example"
+    },
+    {
+     "department": "Sales",
+     "user": "ben.carter@riversidehealth.example"
+    },
+    {
+     "department": "Executive",
+     "user": "diana.fox@riversidehealth.example"
+    },
+    {
+     "department": "Clinical",
+     "user": "dr.mark.ellis@riversidehealth.example"
+    },
+    {
+     "department": "Sales",
+     "user": "maria.lopez@riversidehealth.example"
+    }
+   ],
+   "vendor": "Otter.ai"
+  },
+  "perplexity": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "perplexity",
+     "name": "Perplexity Enterprise Pro",
+     "why": "Same tool on the business plan: company sign-in and admin controls; doesn't train on your data."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "gemini",
+     "name": "Gemini Google Workspace",
+     "why": "Google's AI assistant, available as a consumer app and inside Google Workspace."
+    }
+   ],
+   "app": {
+    "category": "research_search",
+    "category_label": "AI research & search",
+    "common_uses": [
+     "Researching prospects and competitors",
+     "Fact-finding with sources",
+     "Summarizing uploaded files"
+    ],
+    "flags": [],
+    "hq_country": "US",
+    "id": "perplexity",
+    "name": "Perplexity",
+    "notes": null,
+    "soc2": true,
+    "summary": "AI search engine that answers questions with cited web sources.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Enterprise Pro",
+      "trains_on_inputs": "no"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Pro",
+      "trains_on_inputs": "opt_out"
+     }
+    },
+    "vendor": "Perplexity AI",
+    "website": "https://www.perplexity.ai"
+   },
+   "app_key": "perplexity",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "research_search",
+   "category_label": "AI research & search",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Executive",
+     "users": 1
+    },
+    {
+     "department": "Marketing",
+     "users": 1
+    },
+    {
+     "department": "Finance",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [],
+    "domains": [
+     "www.perplexity.ai"
+    ],
+    "raw_names": [],
+    "scopes": []
+   },
+   "first_seen": "2026-10-01T09:15:00+00:00",
+   "last_seen": "2026-10-05T14:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Executive",
+      "reason": "Quick briefings on markets and competitors",
+      "users": 1
+     },
+     {
+      "department": "Marketing",
+      "reason": "Market and competitor research",
+      "users": 1
+     },
+     {
+      "department": "Finance",
+      "reason": "Researching companies and markets",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: quick briefings on markets and competitors (1 of 3 users are in Executive)",
+    "underlying_need": "Faster research with sources"
+   },
+   "listed": true,
+   "msp_opportunity": "Approve a business research tool or use the research features of the approved assistant.",
+   "name": "Perplexity",
+   "recommended_action": {
+    "action": "review",
+    "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+    "label": "Approve with conditions or move to business plan"
+   },
+   "risk": {
+    "level": "medium",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Pro",
+    "score": 44,
+    "top_factors": [
+     "Trains on your data unless each person opts out (Free / Pro plan)",
+     "Your business handles patient health information (HIPAA)",
+     "No company admin controls"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Opt-out is per person and can't be enforced centrally on this plan.",
+     "key": "trains_opt_out",
+     "label": "Trains on your data unless each person opts out (Free / Pro plan)",
+     "points": 20
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "exposure_default",
+     "label": "Holds research questions and any documents people upload",
+     "points": 6
+    }
+   ],
+   "risk_if_business": {
+    "level": "low",
+    "plan_label": "Enterprise Pro",
+    "score": 6
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 3,
+   "users": [
+    {
+     "department": "Executive",
+     "user": "diana.fox@riversidehealth.example"
+    },
+    {
+     "department": "Marketing",
+     "user": "omar.haddad@riversidehealth.example"
+    },
+    {
+     "department": "Finance",
+     "user": "raj.iyer@riversidehealth.example"
+    }
+   ],
+   "vendor": "Perplexity AI"
+  },
+  "read_ai": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "read_ai",
+     "name": "Read AI Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; confirm its data terms."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "fireflies",
+     "name": "Fireflies.ai Business / Enterprise",
+     "why": "AI notetaker that joins meetings, transcribes and syncs notes to CRMs."
+    }
+   ],
+   "app": {
+    "category": "meeting_assistant",
+    "category_label": "Meeting recorder & notetaker",
+    "common_uses": [
+     "Meeting recaps",
+     "Meeting analytics"
+    ],
+    "flags": [
+     "auto_joins_meetings"
+    ],
+    "hq_country": "US",
+    "id": "read_ai",
+    "name": "Read AI",
+    "notes": "Recaps go to attendees, which often prompts new people to sign up, so it spreads on its own.",
+    "soc2": null,
+    "summary": "Meeting assistant that joins calls and sends recaps to attendees.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Enterprise",
+      "trains_on_inputs": "unknown"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Pro",
+      "trains_on_inputs": "unknown"
+     }
+    },
+    "vendor": "Read AI",
+    "website": "https://www.read.ai"
+   },
+   "app_key": "read_ai",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "meeting_assistant",
+   "category_label": "Meeting recorder & notetaker",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Executive",
+     "users": 1
+    },
+    {
+     "department": "Operations",
+     "users": 1
+    },
+    {
+     "department": "HR",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Read AI Meeting Assistant"
+    ],
+    "scopes": [
+     "Calendars.Read",
+     "Mail.Read",
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-04T08:15:00+00:00",
+   "last_seen": "2026-10-05T17:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Executive",
+      "reason": "Getting summaries of meetings they couldn't attend",
+      "users": 1
+     },
+     {
+      "department": "Operations",
+      "reason": "Recording meetings and getting automatic notes and action items",
+      "users": 1
+     },
+     {
+      "department": "HR",
+      "reason": "Recording interviews and HR conversations",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: getting summaries of meetings they couldn't attend (1 of 3 users are in Executive)",
+    "underlying_need": "Meeting notes and follow-ups without manual typing"
+   },
+   "listed": true,
+   "msp_opportunity": "Standardize on one approved notetaker (Teams Premium / Copilot, Google Meet notes, or one vetted vendor), remove the rest, and set a recording-consent policy.",
+   "name": "Read AI",
+   "recommended_action": {
+    "action": "move_to_business",
+    "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+    "label": "Move users to a business plan"
+   },
+   "risk": {
+    "level": "critical",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Pro",
+    "score": 76,
+    "top_factors": [
+     "Can read or send email from users' mailboxes",
+     "Not confirmed whether it trains on your data (Free / Pro plan)",
+     "Can read calendars and join or transcribe meetings"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_mail",
+     "label": "Can read or send email from users' mailboxes",
+     "points": 20
+    },
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Free / Pro plan)",
+     "points": 12
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_meetings",
+     "label": "Can read calendars and join or transcribe meetings",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "soc2_unknown",
+     "label": "SOC 2 report not confirmed",
+     "points": 6
+    },
+    {
+     "detail": null,
+     "key": "auto_joins_meetings",
+     "label": "Joins meetings automatically and spreads to attendees",
+     "points": 5
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "risk_if_business": {
+    "level": "high",
+    "plan_label": "Enterprise",
+    "score": 68
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 3,
+   "users": [
+    {
+     "department": "Executive",
+     "user": "chris.owen@riversidehealth.example"
+    },
+    {
+     "department": "Operations",
+     "user": "grace.lee@riversidehealth.example"
+    },
+    {
+     "department": "HR",
+     "user": "paul.adams@riversidehealth.example"
+    }
+   ],
+   "vendor": "Read AI"
+  },
+  "unlisted:ai-meeting-notes-pro": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": true,
+     "app_id": "microsoft_copilot",
+     "name": "Microsoft 365 Copilot Chat",
+     "why": "Included for Microsoft 365 business users signed in with their work account, with enterprise data protection (prompts aren't used to train models)."
+    }
+   ],
+   "app": null,
+   "app_key": "unlisted:ai-meeting-notes-pro",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": null,
+   "category_label": "Possible AI app (not in catalog)",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Clinical",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "AI Meeting Notes Pro"
+    ],
+    "scopes": [
+     "Calendars.Read",
+     "Mail.Read",
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-04T17:15:00+00:00",
+   "last_seen": "2026-10-04T17:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Clinical",
+      "reason": "Summarizing notes and drafting patient letters",
+      "users": 1
+     }
+    ],
+    "headline": "Unknown vendor. If it's an AI assistant, most likely: summarizing notes and drafting patient letters (1 of 1 users are in Clinical)",
+    "underlying_need": "Faster drafting, summarizing and answering questions"
+   },
+   "listed": false,
+   "msp_opportunity": "Roll out a business AI assistant with sign-in, admin controls and an AI acceptable-use policy; migrate personal-account users onto it.",
+   "name": "AI Meeting Notes Pro",
+   "recommended_action": {
+    "action": "review",
+    "detail": "Find out what it is and what data it stores, then approve or block it.",
+    "label": "Review the vendor"
+   },
+   "risk": {
+    "level": "high",
+    "plan_assumed": "consumer",
+    "plan_label": null,
+    "score": 65,
+    "top_factors": [
+     "Not in our AI catalog yet",
+     "Can read or send email from users' mailboxes",
+     "Can read calendars and join or transcribe meetings"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "We haven't reviewed this vendor. Treat it as untrusted until someone checks its data terms.",
+     "key": "unlisted",
+     "label": "Not in our AI catalog yet",
+     "points": 20
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_mail",
+     "label": "Can read or send email from users' mailboxes",
+     "points": 20
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_meetings",
+     "label": "Can read calendars and join or transcribe meetings",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "risk_if_business": null,
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 1,
+   "users": [
+    {
+     "department": "Clinical",
+     "user": "kate.morgan@riversidehealth.example"
+    }
+   ],
+   "vendor": null
+  },
+  "zapier": {
+   "admin_consented": false,
+   "alternatives": [
+    {
+     "already_licensed": false,
+     "app_id": "zapier",
+     "name": "Zapier (AI & Agents) Team / Enterprise",
+     "why": "Same tool on the business plan: company sign-in and admin controls; confirm its data terms."
+    },
+    {
+     "already_licensed": false,
+     "app_id": "copilot_studio",
+     "name": "Microsoft Copilot Studio Licensed tenant",
+     "why": "Build custom AI agents connected to Microsoft 365 and business data."
+    }
+   ],
+   "app": {
+    "category": "automation_agents",
+    "category_label": "AI automation & agents",
+    "common_uses": [
+     "Syncing leads and records",
+     "AI email triage",
+     "Automated reports"
+    ],
+    "flags": [
+     "holds_credentials"
+    ],
+    "hq_country": "US",
+    "id": "zapier",
+    "name": "Zapier (AI & Agents)",
+    "notes": null,
+    "soc2": true,
+    "summary": "Workflow automation across thousands of apps, with AI steps and agents.",
+    "tiers": {
+     "business": {
+      "admin_controls": true,
+      "label": "Team / Enterprise",
+      "trains_on_inputs": "unknown"
+     },
+     "consumer": {
+      "admin_controls": false,
+      "label": "Free / Pro (personal)",
+      "trains_on_inputs": "unknown"
+     }
+    },
+    "vendor": "Zapier",
+    "website": "https://zapier.com"
+   },
+   "app_key": "zapier",
+   "catalog_reviewed_at": "2026-10-08",
+   "category": "automation_agents",
+   "category_label": "AI automation & agents",
+   "decision": null,
+   "decision_expired": false,
+   "decision_history": [],
+   "departments": [
+    {
+     "department": "Operations",
+     "users": 1
+    }
+   ],
+   "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+   "evidence": {
+    "consent_types": [
+     "Principal"
+    ],
+    "domains": [],
+    "raw_names": [
+     "Zapier"
+    ],
+    "scopes": [
+     "Files.ReadWrite.All",
+     "Mail.ReadWrite",
+     "User.Read",
+     "email",
+     "offline_access",
+     "openid",
+     "profile"
+    ]
+   },
+   "first_seen": "2026-10-07T13:15:00+00:00",
+   "last_seen": "2026-10-07T13:15:00+00:00",
+   "likely_use": {
+    "basis": "Inferred from the app's category and the departments of the people using it.",
+    "by_department": [
+     {
+      "department": "Operations",
+      "reason": "Automating hand-offs between systems",
+      "users": 1
+     }
+    ],
+    "headline": "Most likely: automating hand-offs between systems (1 of 1 users are in Operations)",
+    "underlying_need": "Automating repetitive work across apps"
+   },
+   "listed": true,
+   "msp_opportunity": "Inventory automations, move them to a managed account with least-privilege connections, and offer automation as a managed service.",
+   "name": "Zapier (AI & Agents)",
+   "recommended_action": {
+    "action": "move_to_business",
+    "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+    "label": "Move users to a business plan"
+   },
+   "risk": {
+    "level": "critical",
+    "plan_assumed": "consumer",
+    "plan_label": "Free / Pro (personal)",
+    "score": 84,
+    "top_factors": [
+     "Can read data across the whole organization (files.readwrite.all)",
+     "Can read or send email from users' mailboxes",
+     "Not confirmed whether it trains on your data (Free / Pro (personal) plan)"
+    ]
+   },
+   "risk_factors": [
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_org_wide",
+     "label": "Can read data across the whole organization (files.readwrite.all)",
+     "points": 25
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_mail",
+     "label": "Can read or send email from users' mailboxes",
+     "points": 20
+    },
+    {
+     "detail": "Check the vendor's terms before approving.",
+     "key": "trains_unknown",
+     "label": "Not confirmed whether it trains on your data (Free / Pro (personal) plan)",
+     "points": 12
+    },
+    {
+     "detail": "Putting regulated data into a tool without a signed data agreement (such as a HIPAA BAA) can be an impermissible disclosure.",
+     "key": "regulated_data",
+     "label": "Your business handles patient health information (HIPAA)",
+     "points": 10
+    },
+    {
+     "detail": "You can't enforce settings, see usage, or remove access when someone leaves.",
+     "key": "no_admin_controls",
+     "label": "No company admin controls",
+     "points": 8
+    },
+    {
+     "detail": null,
+     "key": "holds_credentials",
+     "label": "Stores logins to your other business systems",
+     "points": 6
+    },
+    {
+     "detail": "Granted through Microsoft 365 consent.",
+     "key": "scope_offline",
+     "label": "Keeps access even when the user isn't signed in",
+     "points": 3
+    }
+   ],
+   "risk_if_business": {
+    "level": "critical",
+    "plan_label": "Team / Enterprise",
+    "score": 76
+   },
+   "sources": [
+    "csv"
+   ],
+   "status": "unreviewed",
+   "status_label": "Not reviewed",
+   "still_in_use": false,
+   "user_count": 1,
+   "users": [
+    {
+     "department": "Operations",
+     "user": "grace.lee@riversidehealth.example"
+    }
+   ],
+   "vendor": "Zapier"
+  }
+ },
+ "generated_from": "backend/scripts/build_ai_demo.py",
+ "inventory": {
+  "apps": [
+   {
+    "admin_consented": false,
+    "app_key": "deepseek",
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Clinical",
+      "users": 2
+     }
+    ],
+    "first_seen": "2026-10-04T13:15:00+00:00",
+    "last_seen": "2026-10-06T15:15:00+00:00",
+    "likely_use": "Most likely: summarizing notes and drafting patient letters (2 of 2 users are in Clinical)",
+    "listed": true,
+    "name": "DeepSeek",
+    "recommended_action": {
+     "action": "block",
+     "detail": "Revoke access, tell the users why, and point them to an approved tool.",
+     "label": "Block and offer an alternative"
+    },
+    "risk": {
+     "level": "critical",
+     "plan_assumed": "consumer",
+     "plan_label": "Free app",
+     "score": 96,
+     "top_factors": [
+      "Data held in China",
+      "Uses your data to train AI models (Free app plan)",
+      "No SOC 2 report"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 2,
+    "vendor": "DeepSeek (Hangzhou DeepSeek AI)"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "zapier",
+    "category": "automation_agents",
+    "category_label": "AI automation & agents",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Operations",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-07T13:15:00+00:00",
+    "last_seen": "2026-10-07T13:15:00+00:00",
+    "likely_use": "Most likely: automating hand-offs between systems (1 of 1 users are in Operations)",
+    "listed": true,
+    "name": "Zapier (AI & Agents)",
+    "recommended_action": {
+     "action": "move_to_business",
+     "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+     "label": "Move users to a business plan"
+    },
+    "risk": {
+     "level": "critical",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Pro (personal)",
+     "score": 84,
+     "top_factors": [
+      "Can read data across the whole organization (files.readwrite.all)",
+      "Can read or send email from users' mailboxes",
+      "Not confirmed whether it trains on your data (Free / Pro (personal) plan)"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 1,
+    "vendor": "Zapier"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "read_ai",
+    "category": "meeting_assistant",
+    "category_label": "Meeting recorder & notetaker",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Executive",
+      "users": 1
+     },
+     {
+      "department": "Operations",
+      "users": 1
+     },
+     {
+      "department": "HR",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-04T08:15:00+00:00",
+    "last_seen": "2026-10-05T17:15:00+00:00",
+    "likely_use": "Most likely: getting summaries of meetings they couldn't attend (1 of 3 users are in Executive)",
+    "listed": true,
+    "name": "Read AI",
+    "recommended_action": {
+     "action": "move_to_business",
+     "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+     "label": "Move users to a business plan"
+    },
+    "risk": {
+     "level": "critical",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Pro",
+     "score": 76,
+     "top_factors": [
+      "Can read or send email from users' mailboxes",
+      "Not confirmed whether it trains on your data (Free / Pro plan)",
+      "Can read calendars and join or transcribe meetings"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 3,
+    "vendor": "Read AI"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "unlisted:ai-meeting-notes-pro",
+    "category": null,
+    "category_label": "Possible AI app (not in catalog)",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Clinical",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-04T17:15:00+00:00",
+    "last_seen": "2026-10-04T17:15:00+00:00",
+    "likely_use": "Unknown vendor. If it's an AI assistant, most likely: summarizing notes and drafting patient letters (1 of 1 users are in Clinical)",
+    "listed": false,
+    "name": "AI Meeting Notes Pro",
+    "recommended_action": {
+     "action": "review",
+     "detail": "Find out what it is and what data it stores, then approve or block it.",
+     "label": "Review the vendor"
+    },
+    "risk": {
+     "level": "high",
+     "plan_assumed": "consumer",
+     "plan_label": null,
+     "score": 65,
+     "top_factors": [
+      "Not in our AI catalog yet",
+      "Can read or send email from users' mailboxes",
+      "Can read calendars and join or transcribe meetings"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 1,
+    "vendor": null
+   },
+   {
+    "admin_consented": false,
+    "app_key": "otter",
+    "category": "meeting_assistant",
+    "category_label": "Meeting recorder & notetaker",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Sales",
+      "users": 3
+     },
+     {
+      "department": "Executive",
+      "users": 1
+     },
+     {
+      "department": "Clinical",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-01T11:15:00+00:00",
+    "last_seen": "2026-10-07T17:15:00+00:00",
+    "likely_use": "Most likely: recording customer calls and pushing notes into the CRM (3 of 5 users are in Sales)",
+    "listed": true,
+    "name": "Otter.ai",
+    "recommended_action": {
+     "action": "move_to_business",
+     "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+     "label": "Move users to a business plan"
+    },
+    "risk": {
+     "level": "high",
+     "plan_assumed": "consumer",
+     "plan_label": "Basic / Pro",
+     "score": 63,
+     "top_factors": [
+      "Uses your data to train AI models (Basic / Pro plan)",
+      "Can read calendars and join or transcribe meetings",
+      "Your business handles patient health information (HIPAA)"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 5,
+    "vendor": "Otter.ai"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "chatgpt",
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Sales",
+      "users": 3
+     },
+     {
+      "department": "Marketing",
+      "users": 2
+     },
+     {
+      "department": "Executive",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-01T09:15:00+00:00",
+    "last_seen": "2026-10-07T16:15:00+00:00",
+    "likely_use": "Most likely: writing prospecting emails and proposals, researching accounts before calls (3 of 10 users are in Sales)",
+    "listed": true,
+    "name": "ChatGPT",
+    "recommended_action": {
+     "action": "move_to_business",
+     "detail": "Put these users on the business plan (or an assistant you already license), then revoke personal-account access.",
+     "label": "Move users to a business plan"
+    },
+    "risk": {
+     "level": "high",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Plus / Pro",
+     "score": 51,
+     "top_factors": [
+      "Trains on your data unless each person opts out (Free / Plus / Pro plan)",
+      "Your business handles patient health information (HIPAA)",
+      "No company admin controls"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 10,
+    "vendor": "OpenAI"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "cursor",
+    "category": "coding_assistant",
+    "category_label": "AI coding assistant",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Engineering",
+      "users": 2
+     }
+    ],
+    "first_seen": "2026-10-03T11:15:00+00:00",
+    "last_seen": "2026-10-04T13:15:00+00:00",
+    "likely_use": "Most likely: autocompleting code, writing tests and refactoring (2 of 2 users are in Engineering)",
+    "listed": true,
+    "name": "Cursor",
+    "recommended_action": {
+     "action": "review",
+     "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+     "label": "Approve with conditions or move to business plan"
+    },
+    "risk": {
+     "level": "medium",
+     "plan_assumed": "consumer",
+     "plan_label": "Hobby / Pro (privacy mode optional)",
+     "score": 48,
+     "top_factors": [
+      "Trains on your data unless each person opts out (Hobby / Pro (privacy mode optional) plan)",
+      "Sees source code, which can include secrets and customer data",
+      "Your business handles patient health information (HIPAA)"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 2,
+    "vendor": "Anysphere"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "claude",
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Finance",
+      "users": 1
+     },
+     {
+      "department": "Engineering",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-04T18:15:00+00:00",
+    "last_seen": "2026-10-05T14:15:00+00:00",
+    "likely_use": "Most likely: building spreadsheet formulas and summarizing financial documents (1 of 2 users are in Finance)",
+    "listed": true,
+    "name": "Claude",
+    "recommended_action": {
+     "action": "review",
+     "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+     "label": "Approve with conditions or move to business plan"
+    },
+    "risk": {
+     "level": "medium",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Pro / Max",
+     "score": 46,
+     "top_factors": [
+      "Trains on your data unless each person opts out (Free / Pro / Max plan)",
+      "Your business handles patient health information (HIPAA)",
+      "No company admin controls"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 2,
+    "vendor": "Anthropic"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "perplexity",
+    "category": "research_search",
+    "category_label": "AI research & search",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Executive",
+      "users": 1
+     },
+     {
+      "department": "Marketing",
+      "users": 1
+     },
+     {
+      "department": "Finance",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-01T09:15:00+00:00",
+    "last_seen": "2026-10-05T14:15:00+00:00",
+    "likely_use": "Most likely: quick briefings on markets and competitors (1 of 3 users are in Executive)",
+    "listed": true,
+    "name": "Perplexity",
+    "recommended_action": {
+     "action": "review",
+     "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+     "label": "Approve with conditions or move to business plan"
+    },
+    "risk": {
+     "level": "medium",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Pro",
+     "score": 44,
+     "top_factors": [
+      "Trains on your data unless each person opts out (Free / Pro plan)",
+      "Your business handles patient health information (HIPAA)",
+      "No company admin controls"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 3,
+    "vendor": "Perplexity AI"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "heygen",
+    "category": "image_video",
+    "category_label": "AI image & video generation",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Sales",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-07T10:15:00+00:00",
+    "last_seen": "2026-10-07T10:15:00+00:00",
+    "likely_use": "Most likely: making personalized video outreach (1 of 1 users are in Sales)",
+    "listed": true,
+    "name": "HeyGen",
+    "recommended_action": {
+     "action": "review",
+     "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+     "label": "Approve with conditions or move to business plan"
+    },
+    "risk": {
+     "level": "medium",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Creator",
+     "score": 44,
+     "top_factors": [
+      "Not confirmed whether it trains on your data (Free / Creator plan)",
+      "Your business handles patient health information (HIPAA)",
+      "No company admin controls"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 1,
+    "vendor": "HeyGen"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "gamma",
+    "category": "presentation_design",
+    "category_label": "AI presentations & design",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Executive",
+      "users": 1
+     },
+     {
+      "department": "Sales",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-05T08:15:00+00:00",
+    "last_seen": "2026-10-05T11:15:00+00:00",
+    "likely_use": "Most likely: board and investor decks (1 of 2 users are in Executive)",
+    "listed": true,
+    "name": "Gamma",
+    "recommended_action": {
+     "action": "review",
+     "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+     "label": "Approve with conditions or move to business plan"
+    },
+    "risk": {
+     "level": "medium",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Plus / Pro",
+     "score": 42,
+     "top_factors": [
+      "Not confirmed whether it trains on your data (Free / Plus / Pro plan)",
+      "Your business handles patient health information (HIPAA)",
+      "No company admin controls"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 2,
+    "vendor": "Gamma Tech"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "grammarly",
+    "category": "writing_assistant",
+    "category_label": "Writing & editing assistant",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Customer Support",
+      "users": 2
+     },
+     {
+      "department": "Marketing",
+      "users": 2
+     },
+     {
+      "department": "Finance",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-01T17:15:00+00:00",
+    "last_seen": "2026-10-05T10:15:00+00:00",
+    "likely_use": "Most likely: making ticket replies sound professional (2 of 6 users are in Customer Support)",
+    "listed": true,
+    "name": "Grammarly",
+    "recommended_action": {
+     "action": "review",
+     "detail": "Approve it under the AI acceptable-use policy, or standardize on the business plan.",
+     "label": "Approve with conditions or move to business plan"
+    },
+    "risk": {
+     "level": "medium",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Pro",
+     "score": 38,
+     "top_factors": [
+      "Not confirmed whether it trains on your data (Free / Pro plan)",
+      "Your business handles patient health information (HIPAA)",
+      "No company admin controls"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 6,
+    "vendor": "Grammarly (Superhuman)"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "fireflies",
+    "category": "meeting_assistant",
+    "category_label": "Meeting recorder & notetaker",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Sales",
+      "users": 2
+     }
+    ],
+    "first_seen": "2026-10-02T09:15:00+00:00",
+    "last_seen": "2026-10-07T18:15:00+00:00",
+    "likely_use": "Most likely: recording customer calls and pushing notes into the CRM (2 of 2 users are in Sales)",
+    "listed": true,
+    "name": "Fireflies.ai",
+    "recommended_action": {
+     "action": "approve",
+     "detail": "Low risk. Add it to the approved-tools list.",
+     "label": "Approve"
+    },
+    "risk": {
+     "level": "low",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Pro",
+     "score": 28,
+     "top_factors": [
+      "Can read calendars and join or transcribe meetings",
+      "No company admin controls",
+      "Joins meetings automatically and spreads to attendees"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 2,
+    "vendor": "Fireflies.ai"
+   },
+   {
+    "admin_consented": false,
+    "app_key": "canva_ai",
+    "category": "presentation_design",
+    "category_label": "AI presentations & design",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Marketing",
+      "users": 3
+     },
+     {
+      "department": "Executive",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-03T09:15:00+00:00",
+    "last_seen": "2026-10-06T11:15:00+00:00",
+    "likely_use": "Most likely: designing presentations and one-pagers (3 of 4 users are in Marketing)",
+    "listed": true,
+    "name": "Canva AI",
+    "recommended_action": {
+     "action": "approve",
+     "detail": "Low risk. Add it to the approved-tools list.",
+     "label": "Approve"
+    },
+    "risk": {
+     "level": "low",
+     "plan_assumed": "consumer",
+     "plan_label": "Free / Pro",
+     "score": 14,
+     "top_factors": [
+      "No company admin controls",
+      "Holds the content of decks and documents, often shared by public link"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 4,
+    "vendor": "Canva"
+   },
+   {
+    "admin_consented": true,
+    "app_key": "microsoft_copilot",
+    "category": "general_assistant",
+    "category_label": "AI chat assistant",
+    "decision": null,
+    "decision_expired": false,
+    "departments": [
+     {
+      "department": "Operations",
+      "users": 2
+     },
+     {
+      "department": "Engineering",
+      "users": 1
+     }
+    ],
+    "first_seen": "2026-10-01T17:15:00+00:00",
+    "last_seen": "2026-10-06T11:15:00+00:00",
+    "likely_use": "Most likely: writing procedures and summarizing vendor documents (2 of 3 users are in Operations)",
+    "listed": true,
+    "name": "Microsoft Copilot",
+    "recommended_action": {
+     "action": "approve",
+     "detail": "Low risk. Add it to the approved-tools list.",
+     "label": "Approve"
+    },
+    "risk": {
+     "level": "low",
+     "plan_assumed": "business",
+     "plan_label": "Microsoft 365 work account",
+     "score": 8,
+     "top_factors": [
+      "Holds whatever people paste in: emails, documents, customer details"
+     ]
+    },
+    "sources": [
+     "csv"
+    ],
+    "status": "unreviewed",
+    "status_label": "Not reviewed",
+    "still_in_use": false,
+    "user_count": 3,
+    "vendor": "Microsoft"
+   }
+  ],
+  "catalog_reviewed_at": "2026-10-08",
+  "disclaimer": "Vendor facts are summaries as of the review date. Plans and terms change; confirm on the vendor's trust or privacy page before a contractual or compliance decision. 'Not confirmed' means we have not verified it, not that the answer is no.",
+  "summary": {
+   "approved": 0,
+   "apps": 15,
+   "blocked": 0,
+   "by_level": {
+    "critical": 3,
+    "high": 3,
+    "low": 3,
+    "medium": 6
+   },
+   "last_seen": "2026-10-07T18:15:00+00:00",
+   "needs_attention": 6,
+   "people": 24,
+   "regulated_data": [
+    "patient health information (HIPAA)"
+   ],
+   "still_in_use_after_block": 0,
+   "top_departments": [
+    {
+     "department": "Sales",
+     "people": 5
+    },
+    {
+     "department": "Clinical",
+     "people": 4
+    },
+    {
+     "department": "Marketing",
+     "people": 3
+    },
+    {
+     "department": "Executive",
+     "people": 2
+    }
+   ],
+   "top_risk": "DeepSeek",
+   "unlisted": 1,
+   "unreviewed": 15
+  }
+ },
+ "msp_rollup": {
+  "clients": [
+   {
+    "apps": 15,
+    "critical": 3,
+    "last_seen": "2026-10-07T18:15:00+00:00",
+    "name": "Riverside Health",
+    "needs_attention": 6,
+    "org_id": "demo-riverside",
+    "people": 24,
+    "scanned": true,
+    "top_risk": "DeepSeek"
+   },
+   {
+    "apps": 5,
+    "critical": 0,
+    "last_seen": "2026-10-07T10:00:00+00:00",
+    "name": "Bolt Logistics",
+    "needs_attention": 2,
+    "org_id": "demo-bolt",
+    "people": 11,
+    "scanned": true,
+    "top_risk": "Read AI"
+   },
+   {
+    "apps": 4,
+    "critical": 0,
+    "last_seen": "2026-10-07T15:00:00+00:00",
+    "name": "Cedar Law Group",
+    "needs_attention": 2,
+    "org_id": "demo-cedar",
+    "people": 6,
+    "scanned": true,
+    "top_risk": "Otter.ai"
+   }
+  ],
+  "opportunities": [
+   {
+    "category": "meeting_assistant",
+    "clients": 3,
+    "label": "Meeting recorder & notetaker",
+    "offer": "Standardize on one approved notetaker (Teams Premium / Copilot, Google Meet notes, or one vetted vendor), remove the rest, and set a recording-consent policy."
+   },
+   {
+    "category": "automation_agents",
+    "clients": 2,
+    "label": "AI automation & agents",
+    "offer": "Inventory automations, move them to a managed account with least-privilege connections, and offer automation as a managed service."
+   },
+   {
+    "category": "general_assistant",
+    "clients": 1,
+    "label": "AI chat assistant",
+    "offer": "Roll out a business AI assistant with sign-in, admin controls and an AI acceptable-use policy; migrate personal-account users onto it."
+   }
+  ],
+  "top_apps": [
+   {
+    "app_key": "chatgpt",
+    "clients": 2,
+    "name": "ChatGPT"
+   },
+   {
+    "app_key": "claude",
+    "clients": 2,
+    "name": "Claude"
+   },
+   {
+    "app_key": "grammarly",
+    "clients": 2,
+    "name": "Grammarly"
+   },
+   {
+    "app_key": "otter",
+    "clients": 2,
+    "name": "Otter.ai"
+   },
+   {
+    "app_key": "read_ai",
+    "clients": 2,
+    "name": "Read AI"
+   },
+   {
+    "app_key": "zapier",
+    "clients": 2,
+    "name": "Zapier (AI & Agents)"
+   },
+   {
+    "app_key": "unlisted:ai-meeting-notes-pro",
+    "clients": 1,
+    "name": "AI Meeting Notes Pro"
+   },
+   {
+    "app_key": "canva_ai",
+    "clients": 1,
+    "name": "Canva AI"
+   }
+  ],
+  "totals": {
+   "apps": 24,
+   "by_level": {
+    "critical": 3,
+    "high": 7,
+    "low": 3,
+    "medium": 11
+   },
+   "clients": 3,
+   "clients_scanned": 3,
+   "needs_attention": 10
+  }
+ },
+ "now": "2026-10-08T12:00:00+00:00",
+ "org_name": "Riverside Health",
+ "profile": {
+  "email_provider": "Microsoft 365 (Outlook)",
+  "sensitive_data": [
+   "phi",
+   "pii"
+  ]
+ }
+}

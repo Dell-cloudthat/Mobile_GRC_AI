@@ -7,6 +7,7 @@
  */
 import { useApp, ScoreRing } from '../../SecurityOSApp';
 import AwaitingYou from '../../api/AwaitingYou';
+import { AiGlanceCard } from './ai/AiCards';
 import { calculateFrameworkReadiness, toGrade } from '../../data/scoring';
 import { calculateTCO, riskLevel, fmtUSD } from '../../data/risk';
 import {
@@ -154,6 +155,7 @@ export default function SecurityProfileView() {
 
         {/* Work waiting on this person (connected mode) */}
         <AwaitingYou />
+        <AiGlanceCard />
 
         {/* Alerts */}
         {expiringCount > 0 && (

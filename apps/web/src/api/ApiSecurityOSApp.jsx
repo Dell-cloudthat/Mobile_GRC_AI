@@ -258,6 +258,17 @@ export default function ApiSecurityOSApp() {
     auditVerify: () => api.auditVerify(orgId),
   };
 
+  // Shadow AI: same interface as the demo adapter (data/aiDemoAdapter.js).
+  const ai = {
+    key: orgId,
+    list: () => api.aiApps(orgId),
+    detail: appKey => api.aiApp(orgId, appKey),
+    importCsv: (text, filename) => api.importAiApps(orgId, text, filename),
+    decide: (appKey, body) => api.decideAiApp(orgId, appKey, body),
+    portfolio: me?.msp_id ? () => api.mspAiUsage(me.msp_id) : null,
+    sample: null,
+  };
+
   const tenants = orgs.map(o => ({
     id: o.org_id,
     name: o.org_name,
@@ -319,11 +330,15 @@ export default function ApiSecurityOSApp() {
           onCreate={async ({ alsoExecutive }) => {
             try {
               const p = profileToApi(state.profile);
-              const r = await api.createOrg({
+              const fields = {
                 name: p.business_name, industry: p.industry, employee_count: p.employee_count,
                 email_provider: p.email_provider, cloud_providers: p.cloud_providers,
-                sensitive_data: p.sensitive_data, also_executive: alsoExecutive,
-              });
+                sensitive_data: p.sensitive_data,
+              };
+              // MSP staff create managed clients (linked to their MSP); others create their own business.
+              const r = me.msp_id
+                ? await api.createMspOrg(me.msp_id, fields)
+                : await api.createOrg({ ...fields, also_executive: alsoExecutive });
               switchTenant(r.org_id);
               await loadMe();
               setNewOrg(s => ({ ...s, step: 'analysis' }));
@@ -350,6 +365,7 @@ export default function ApiSecurityOSApp() {
     tenants, activeTenantId: orgId, switchTenant, addTenant, removeTenant, renameTenant,
     workflow,
     team,
+    ai,
     refresh: refreshActive,
     toast,
     signOut,

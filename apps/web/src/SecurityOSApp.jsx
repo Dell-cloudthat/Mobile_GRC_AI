@@ -10,9 +10,12 @@ import RiskView from './views/securityos/RiskView';
 import CopilotView from './views/securityos/CopilotView';
 import GlobalView from './views/securityos/GlobalView';
 import SettingsView from './views/securityos/SettingsView';
+import AIUsageView from './views/securityos/ai/AIUsageView';
+import AIAppDetailView from './views/securityos/ai/AIAppDetailView';
+import { createDemoAi } from './data/aiDemoAdapter';
 import { calculateScore, buildDemoStatuses } from './data/scoring';
 import { loadCatalog } from './data/controls';
-import { Shield, Map, Bot, Globe, Settings } from 'lucide-react';
+import { Shield, Map, Bot, Globe, Settings, Sparkles } from 'lucide-react';
 import { IS_API_MODE } from './lib/config';
 // Connected mode (sign-in, API) loads on demand so demo mode stays small.
 const ApiSecurityOSApp = lazy(() => import('./api/ApiSecurityOSApp'));
@@ -80,6 +83,7 @@ function normalizeTenant(t) {
 const NAV = [
   { id: 'profile',  label: 'Profile',  icon: Shield },
   { id: 'roadmap',  label: 'Roadmap',  icon: Map },
+  { id: 'ai',       label: 'AI',       icon: Sparkles },
   { id: 'copilot',  label: 'Copilot',  icon: Bot },
   { id: 'global',   label: 'Customers',icon: Globe },
   { id: 'settings', label: 'Settings', icon: Settings },
@@ -98,6 +102,7 @@ export default function SecurityOSApp() {
 function LocalSecurityOSApp() {
   const saved = loadState();
   const catalog = loadCatalog();
+  const ai = useMemo(() => createDemoAi(), []);
 
   const [tenants, setTenants] = useState(() => {
     const initial = saved?.tenants?.length ? saved.tenants.map(normalizeTenant) : null;
@@ -209,6 +214,7 @@ function LocalSecurityOSApp() {
     attestations, addAttestation,
     assignments, setAssignment,
     tenants, activeTenantId, switchTenant, addTenant, removeTenant, renameTenant,
+    ai,
   };
   return <AppShell data={data} />;
 }
@@ -222,6 +228,23 @@ export function AppShell({ data, banner = null }) {
   const [reportOpen, setReportOpen] = useState(false);
   const [activeFramework, setActiveFramework] = useState('all');
   const [copilotInitialPrompt, setCopilotInitialPrompt] = useState(null);
+  const [aiAppKey, setAiAppKey] = useState(null);
+  const [aiState, setAiState] = useState({ status: 'idle', data: null, error: null });
+
+  // Shadow AI inventory: loaded per org and shared by the AI tab, the profile
+  // glance card and the app detail screen.
+  const aiKey = data.ai?.key;
+  const reloadAi = useCallback(async () => {
+    if (!data.ai) return;
+    setAiState(s => ({ ...s, status: 'loading', error: null }));
+    try {
+      setAiState({ status: 'ready', data: await data.ai.list(), error: null });
+    } catch (error) {
+      setAiState({ status: 'error', data: null, error });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [aiKey]);
+  useEffect(() => { setAiState({ status: 'idle', data: null, error: null }); setAiAppKey(null); reloadAi(); }, [reloadAi]);
 
   const ctx = {
     ...data,
@@ -245,6 +268,10 @@ export function AppShell({ data, banner = null }) {
     addTenant: async (...args) => { await data.addTenant(...args); setView('global'); },
     setView,
     view,
+
+    aiState,
+    reloadAi,
+    openAiApp: key => setAiAppKey(key),
   };
 
   const closeFix = () => setFixControlId(null);
@@ -267,10 +294,13 @@ export function AppShell({ data, banner = null }) {
             <FixView controlId={fixControlId} onBack={closeFix} />
           ) : riskOpen ? (
             <RiskView onBack={() => setRiskOpen(false)} />
+          ) : aiAppKey ? (
+            <AIAppDetailView appKey={aiAppKey} onBack={() => setAiAppKey(null)} />
           ) : (
             <>
               {view === 'profile'  && <SecurityProfileView />}
               {view === 'roadmap'  && <FixRoadmapView />}
+              {view === 'ai'       && <AIUsageView />}
               {view === 'copilot'  && <CopilotView />}
               {view === 'global'   && <GlobalView />}
               {view === 'settings' && <SettingsView />}
@@ -279,7 +309,7 @@ export function AppShell({ data, banner = null }) {
         </main>
 
         {/* Bottom nav — always visible */}
-        {!fixControlId && !attestControlId && !riskOpen && !reportOpen && (
+        {!fixControlId && !attestControlId && !riskOpen && !reportOpen && !aiAppKey && (
           <nav className="flex border-t border-slate-800 bg-slate-900 shrink-0">
             {NAV.map(({ id, label, icon: Icon }) => {
               const active = view === id;
